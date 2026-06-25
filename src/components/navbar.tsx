@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { NAV_LINKS, SITE } from "@/lib/site";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -78,64 +78,65 @@ export function Navbar() {
         </nav>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-2">
-          <div className="hidden sm:flex items-center gap-2 mr-2">
-            <div className="hidden lg:flex items-center gap-1 px-2 py-1 bg-muted/50 rounded-md border border-border text-xs text-muted-foreground font-mono">
-              <span>⌘</span><span>K</span>
-            </div>
-            <ThemeToggle />
+        <div className="flex items-center gap-1 sm:gap-2">
+          <div className="hidden lg:flex items-center gap-1 px-2 py-1 bg-muted/50 rounded-md border border-border text-xs text-muted-foreground font-mono mr-1">
+            <span>⌘</span><span>K</span>
           </div>
           
-          <a
-            href={SITE.calendly}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(buttonVariants({ className: "hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90" }))}
-          >
-            Book a call
-          </a>
+          <div className="flex items-center gap-1 sm:gap-2">
+            <ThemeToggle />
+            
+            <a
+              href={SITE.calendly}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ className: "hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90" }))}
+            >
+              Book a call
+            </a>
 
-          {/* Mobile Menu */}
-          <Sheet>
-            <SheetTrigger className="md:hidden inline-flex items-center justify-center rounded-lg h-8 w-8 hover:bg-muted transition-colors">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Open menu</span>
-            </SheetTrigger>
-            <SheetContent side="top" className="rounded-b-2xl border-b border-border bg-background">
-              <SheetHeader className="sr-only">
-                <SheetTitle>Navigation Menu</SheetTitle>
-              </SheetHeader>
-              <div className="flex items-center justify-between mb-8">
-                <Link href="/" className="font-semibold tracking-tight text-lg">
-                  {SITE.name}
-                </Link>
-                <div className="flex items-center gap-2">
-                  <ThemeToggle />
-                </div>
-              </div>
-              <nav className="flex flex-col gap-4">
-                {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.label}
+            {/* Mobile Menu */}
+            <Sheet>
+              <SheetTrigger className="md:hidden inline-flex items-center justify-center rounded-lg h-8 w-8 hover:bg-muted transition-colors">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Open menu</span>
+              </SheetTrigger>
+              <SheetContent side="top" className="rounded-b-2xl border-b border-border bg-background p-6 pt-14">
+                <SheetHeader className="sr-only">
+                  <SheetTitle>Navigation Menu</SheetTitle>
+                </SheetHeader>
+                <div className="flex items-center justify-between">
+                  <Link href="/" className="font-semibold tracking-tight text-lg">
+                    {SITE.name}
                   </Link>
-                ))}
-              </nav>
-              <div className="mt-8">
-                <a
-                  href={SITE.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(buttonVariants({ className: "w-full bg-primary text-primary-foreground hover:bg-primary/90" }))}
-                >
-                  Book a call
-                </a>
-              </div>
-            </SheetContent>
-          </Sheet>
+                  <div className="flex items-center gap-2">
+                    <ThemeToggle />
+                  </div>
+                </div>
+                <nav className="flex flex-col gap-1 mt-8">
+                  {NAV_LINKS.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors px-4 py-3 rounded-xl hover:bg-muted/50"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
+                <div className="mt-6">
+                  <a
+                    href={SITE.calendly}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(buttonVariants({ className: "w-full bg-primary text-primary-foreground hover:bg-primary/90" }))}
+                  >
+                    Book a call
+                  </a>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </motion.header>

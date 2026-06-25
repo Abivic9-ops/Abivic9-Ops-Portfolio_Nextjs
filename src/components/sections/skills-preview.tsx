@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Code2, Braces, Paintbrush, Sparkles, Server, Database, GitBranch, Zap, GitCommit, Container, Cloud, Globe } from "lucide-react";
 import { SKILL_CATEGORIES } from "@/lib/skills";
@@ -36,22 +35,26 @@ const SKILL_COLORS: Record<string, string> = {
   "Vercel / Cloudflare": "text-zinc-400 border-zinc-500/30 bg-zinc-500/10",
 };
 
-export function SkillsPreview() {
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
+const allSkills = SKILL_CATEGORIES.flatMap(c => c.skills);
+const firstHalf = allSkills.slice(0, Math.ceil(allSkills.length / 2));
+const secondHalf = allSkills.slice(Math.ceil(allSkills.length / 2));
 
-  const x1 = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
-  const x2 = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-
-  const allSkills = SKILL_CATEGORIES.flatMap(c => c.skills);
-  const firstHalf = allSkills.slice(0, Math.ceil(allSkills.length / 2));
-  const secondHalf = allSkills.slice(Math.ceil(allSkills.length / 2));
-
+function SkillPill({ skill }: { skill: (typeof allSkills)[number] }) {
+  const colors = SKILL_COLORS[skill.name] || "text-primary border-primary/30 bg-primary/10";
+  const Icon = ICON_MAP[skill.icon] || Code2;
   return (
-    <section id="skills" ref={containerRef} className="py-24 md:py-32 relative overflow-hidden">
+    <span
+      className={`inline-flex items-center gap-2 px-5 py-3 rounded-full border ${colors} text-sm font-medium shadow-sm cursor-default`}
+    >
+      <Icon className="w-4 h-4" />
+      {skill.name}
+    </span>
+  );
+}
+
+export function SkillsPreview() {
+  return (
+    <section id="skills" className="py-24 md:py-32 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -118,44 +121,50 @@ export function SkillsPreview() {
         ))}
       </div>
 
-      {/* Horizontal Scrolling Marquee */}
-      <div className="relative py-8 border-y border-border/50 bg-surface/20">
+      {/* Horizontal Scrolling Marquee - Constant Motion */}
+      <div className="relative py-8 border-y border-border/50 bg-surface/20 overflow-hidden">
         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
         {/* Row 1 - scrolls left */}
-        <motion.div style={{ x: x1 }} className="flex gap-4 w-max px-8 mb-4">
-          {[...firstHalf, ...firstHalf, ...firstHalf].map((skill, idx) => {
-            const colors = SKILL_COLORS[skill.name] || "text-primary border-primary/30 bg-primary/10";
-            const Icon = ICON_MAP[skill.icon] || Code2;
-            return (
-              <span
-                key={`row1-${skill.name}-${idx}`}
-                className={`inline-flex items-center gap-2 px-5 py-3 rounded-full border ${colors} text-sm font-medium shadow-sm transition-all hover:scale-105 hover:shadow-md cursor-default`}
-              >
-                <Icon className="w-4 h-4" />
-                {skill.name}
-              </span>
-            );
-          })}
-        </motion.div>
+        <div className="flex overflow-hidden mb-4">
+          <motion.div
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+            className="flex gap-4 shrink-0"
+          >
+            <div className="flex gap-4">
+              {firstHalf.map((skill, idx) => (
+                <SkillPill key={`r1-a-${skill.name}-${idx}`} skill={skill} />
+              ))}
+            </div>
+            <div className="flex gap-4">
+              {firstHalf.map((skill, idx) => (
+                <SkillPill key={`r1-b-${skill.name}-${idx}`} skill={skill} />
+              ))}
+            </div>
+          </motion.div>
+        </div>
 
         {/* Row 2 - scrolls right */}
-        <motion.div style={{ x: x2 }} className="flex gap-4 w-max px-8">
-          {[...secondHalf, ...secondHalf, ...secondHalf].map((skill, idx) => {
-            const colors = SKILL_COLORS[skill.name] || "text-primary border-primary/30 bg-primary/10";
-            const Icon = ICON_MAP[skill.icon] || Code2;
-            return (
-              <span
-                key={`row2-${skill.name}-${idx}`}
-                className={`inline-flex items-center gap-2 px-5 py-3 rounded-full border ${colors} text-sm font-medium shadow-sm transition-all hover:scale-105 hover:shadow-md cursor-default`}
-              >
-                <Icon className="w-4 h-4" />
-                {skill.name}
-              </span>
-            );
-          })}
-        </motion.div>
+        <div className="flex overflow-hidden">
+          <motion.div
+            animate={{ x: ["-50%", "0%"] }}
+            transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+            className="flex gap-4 shrink-0"
+          >
+            <div className="flex gap-4">
+              {secondHalf.map((skill, idx) => (
+                <SkillPill key={`r2-a-${skill.name}-${idx}`} skill={skill} />
+              ))}
+            </div>
+            <div className="flex gap-4">
+              {secondHalf.map((skill, idx) => (
+                <SkillPill key={`r2-b-${skill.name}-${idx}`} skill={skill} />
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
