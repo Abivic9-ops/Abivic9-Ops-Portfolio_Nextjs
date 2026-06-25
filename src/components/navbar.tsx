@@ -8,7 +8,8 @@ import { Menu, X } from "lucide-react";
 import { NAV_LINKS, SITE } from "@/lib/site";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet";
 
 export function Navbar() {
@@ -85,19 +86,20 @@ export function Navbar() {
             <ThemeToggle />
           </div>
           
-          <Button asChild className="hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90">
-            <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
-              Book a call
-            </a>
-          </Button>
+          <a
+            href={SITE.calendly}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(buttonVariants({ className: "hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90" }))}
+          >
+            Book a call
+          </a>
 
           {/* Mobile Menu */}
           <Sheet>
-            <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Open menu</span>
-              </Button>
+            <SheetTrigger className="md:hidden inline-flex items-center justify-center rounded-lg h-8 w-8 hover:bg-muted transition-colors">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Open menu</span>
             </SheetTrigger>
             <SheetContent side="top" className="rounded-b-2xl border-b border-border bg-background">
               <SheetHeader className="sr-only">
@@ -123,11 +125,14 @@ export function Navbar() {
                 ))}
               </nav>
               <div className="mt-8">
-                <Button asChild className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                  <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
-                    Book a call
-                  </a>
-                </Button>
+                <a
+                  href={SITE.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(buttonVariants({ className: "w-full bg-primary text-primary-foreground hover:bg-primary/90" }))}
+                >
+                  Book a call
+                </a>
               </div>
             </SheetContent>
           </Sheet>

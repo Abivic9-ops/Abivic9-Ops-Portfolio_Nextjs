@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { GitFork, Link2, Mail, ArrowRight } from "lucide-react";
+import { Link2, Mail } from "lucide-react";
 import { SITE, NAV_LINKS } from "@/lib/site";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -27,10 +27,6 @@ export function Footer() {
               {SITE.role}. Building fast, reliable products for the modern web.
             </p>
             <div className="flex items-center gap-4 text-muted-foreground">
-              <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                <GitFork className="w-5 h-5" />
-                <span className="sr-only">GitHub</span>
-              </a>
               <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
                 <Link2 className="w-5 h-5" />
                 <span className="sr-only">LinkedIn</span>

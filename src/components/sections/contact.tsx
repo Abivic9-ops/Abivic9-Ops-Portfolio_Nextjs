@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
-import { Mail, MessageCircle, Calendar, ArrowRight, Loader2, GitFork, Link2 } from "lucide-react";
+import { Mail, MessageCircle, Calendar, ArrowRight, Loader2, Link2 } from "lucide-react";
 
 import { SITE } from "@/lib/site";
 import { sendContact } from "@/lib/sendContact";
@@ -128,9 +128,6 @@ export function Contact() {
             </div>
 
             <div className="flex items-center gap-4 pt-8 border-t border-border/50">
-              <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all">
-                <GitFork className="w-4 h-4" />
-              </a>
               <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all">
                 <Link2 className="w-4 h-4" />
               </a>

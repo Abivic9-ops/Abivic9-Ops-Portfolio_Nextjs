@@ -7,7 +7,6 @@ export type Project = {
   tech: string[];
   metrics: string[];
   liveUrl?: string;
-  githubUrl?: string;
   coverImage: string;
   gallery: string[];
   challenge: string;
@@ -27,7 +26,6 @@ export const PROJECTS: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Recharts"],
     metrics: ["-40% reconciliation time", "99.98% uptime", "10k+ daily txns"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
     coverImage: "/placeholder.svg",
     gallery: ["/placeholder.svg", "/placeholder.svg"],
     challenge: "Merchants had no clear way to visualize their M-PESA C2B transactions in real-time, relying on delayed excel exports.",
@@ -49,7 +47,6 @@ export const PROJECTS: Project[] = [
     summary: "High-throughput SMS notification system integrating Africa's Talking API for enterprise clients.",
     tech: ["Node.js", "Redis", "Docker", "AWS ECS"],
     metrics: ["1M+ messages/month", "<50ms latency", "0 message drop rate"],
-    githubUrl: "https://github.com",
     coverImage: "/placeholder.svg",
     gallery: ["/placeholder.svg"],
     challenge: "Handling bulk SMS requests from multiple microservices without hitting API rate limits or losing messages during outages.",

@@ -30,7 +30,7 @@ const EXPERIENCES = [
     description: [
       "Built an internal CRM system from scratch using Vue.js and Laravel, replacing 3 disconnected legacy tools.",
       "Integrated various third-party APIs including Africa's Talking for SMS and Twilio for VoIP.",
-      "Established CI/CD pipelines using GitHub Actions, reducing deployment time from hours to minutes."
+      "Established CI/CD pipelines using automated workflows, reducing deployment time from hours to minutes."
     ]
   }
 ];

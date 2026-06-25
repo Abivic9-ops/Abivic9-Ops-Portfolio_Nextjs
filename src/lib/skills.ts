@@ -33,7 +33,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     name: "DevOps & Tools",
     description: "Automating deployments, managing infrastructure, and optimizing workflows.",
     skills: [
-      { name: "Git / GitHub", level: 95, icon: "github" },
+      { name: "Git", level: 95, icon: "git" },
       { name: "Docker", level: 80, icon: "docker" },
       { name: "AWS", level: 70, icon: "amazonaws" },
       { name: "Vercel / Cloudflare", level: 90, icon: "vercel" },

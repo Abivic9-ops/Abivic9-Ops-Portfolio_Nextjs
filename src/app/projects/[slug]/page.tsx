@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, GitFork, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, CheckCircle2 } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -54,18 +55,14 @@ export default async function ProjectCaseStudy({ params }: Props) {
 
           <div className="flex flex-wrap items-center gap-4">
             {project.liveUrl && (
-              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6">
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                  Visit Live Site <ExternalLink className="w-4 h-4 ml-2" />
-                </a>
-              </Button>
-            )}
-            {project.githubUrl && (
-              <Button asChild variant="outline" className="rounded-full px-6">
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                  <GitFork className="w-4 h-4 mr-2" /> View Source
-                </a>
-              </Button>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(buttonVariants({ className: "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6" }))}
+              >
+                Visit Live Site <ExternalLink className="w-4 h-4 ml-2" />
+              </a>
             )}
           </div>
         </header>
