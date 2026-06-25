@@ -6,6 +6,7 @@ export const SITE = {
   github: "https://github.com/your-handle",
   linkedin: "https://linkedin.com/in/your-handle",
   calendly: "https://calendly.com/your-handle",
+  url: "https://your-domain.com",
 };
 
 export const NAV_LINKS = [
@@ -14,6 +15,7 @@ export const NAV_LINKS = [
   { label: "Services", href: "/#services" },
   { label: "Projects", href: "/projects" },
   { label: "Skills", href: "/skills" },
-  { label: "Experience", href: "/#experience" },
+  { label: "Blog", href: "/blog" },
+  { label: "Uses", href: "/uses" },
   { label: "Contact", href: "/#contact" },
 ];

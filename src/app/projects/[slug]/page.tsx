@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, GitFork, CheckCircle2 } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
 import { Button } from "@/components/ui/button";
 
@@ -63,7 +63,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
             {project.githubUrl && (
               <Button asChild variant="outline" className="rounded-full px-6">
                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                  <Github className="w-4 h-4 mr-2" /> View Source
+                  <GitFork className="w-4 h-4 mr-2" /> View Source
                 </a>
               </Button>
             )}

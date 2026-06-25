@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, ExternalLink, GitFork } from "lucide-react";
 import { PROJECTS, Project } from "@/lib/projects";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -125,7 +125,7 @@ export default function ProjectsArchive() {
                   <div className="flex gap-3">
                     {project.githubUrl && (
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="View source on GitHub">
-                        <Github className="w-4 h-4" />
+                        <GitFork className="w-4 h-4" />
                       </a>
                     )}
                     {project.liveUrl && (
