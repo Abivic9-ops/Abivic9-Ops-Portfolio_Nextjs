@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { 
   Laptop, 
+  Sparkles,
   Wallet, 
   Server, 
   Palette, 
@@ -17,6 +18,12 @@ const SERVICES = [
     description: "Lightning-fast, accessible, and SEO-optimized web applications using Next.js and React.",
     icon: Laptop,
     features: ["SSR / SSG for performance", "Responsive Design", "Modern UI/UX", "PWA Support"],
+  },
+  {
+    title: "AI Integrations",
+    description: "Seamlessly embed intelligent AI capabilities into your existing systems, from LLM-powered chatbots and content generation engines to predictive analytics pipelines and automated decision-making agents.",
+    icon: Sparkles,
+    features: ["OpenAI / Claude / Gemini API integration", "Retrieval-Augmented Generation (RAG) pipelines", "Custom AI agents & workflow automation", "Fine-tuning & domain-specific model training"],
   },
   {
     title: "Fintech Integrations",

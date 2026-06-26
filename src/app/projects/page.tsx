@@ -6,8 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { PROJECTS, Project } from "@/lib/projects";
+import { SITE } from "@/lib/site";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 export default function ProjectsArchive() {
   const [search, setSearch] = useState("");
@@ -33,7 +34,7 @@ export default function ProjectsArchive() {
             Projects Archive
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl">
-            A comprehensive list of products, APIs, and experiments I've built.
+            Every project here solved a real problem, from fintech rails to SaaS dashboards, built for production and shipped with care.
           </p>
         </div>
 
@@ -124,8 +125,14 @@ export default function ProjectsArchive() {
                 <div className="flex items-center justify-between pt-4 border-t border-border mt-auto">
                   <div className="flex gap-3">
                     {project.liveUrl && (
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="View live project">
-                        <ExternalLink className="w-4 h-4" />
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={buttonVariants({ variant: "outline", size: "sm" })}
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        Live Demo
                       </a>
                     )}
                   </div>
@@ -142,6 +149,39 @@ export default function ProjectsArchive() {
               No projects found matching your criteria.
             </div>
           )}
+        </div>
+
+        {/* Get in Touch CTA */}
+        <div className="mt-32 pt-16 border-t border-border/50">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-surface/50 to-surface/20 border border-border rounded-2xl p-12 md:p-16 text-center max-w-4xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Have a project in mind?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto">
+              Let&apos;s discuss how we can build something great together.
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              <a
+                href={SITE.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={buttonVariants({ variant: "default", size: "lg" })}
+              >
+                Book a Call
+              </a>
+              <a
+                href={`mailto:${SITE.email}`}
+                className={buttonVariants({ variant: "outline", size: "lg" })}
+              >
+                Send an Email
+              </a>
+            </div>
+          </motion.div>
         </div>
 
       </div>

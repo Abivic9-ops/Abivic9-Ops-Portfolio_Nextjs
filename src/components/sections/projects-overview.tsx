@@ -43,7 +43,7 @@ export function ProjectsOverview() {
           </h2>
           <div className="h-1 w-12 bg-primary rounded-full mb-6" />
           <p className="text-muted-foreground max-w-2xl text-lg">
-            A selection of projects I&apos;ve built — from fintech integrations to full-stack SaaS platforms.
+            A selection of projects I&apos;ve built, from fintech integrations to full-stack SaaS platforms.
           </p>
         </motion.div>
       </div>

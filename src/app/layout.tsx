@@ -21,7 +21,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Victor Mwendwa | Portfolio",
   description: "Victor Mwendwa | Full-Stack Engineer",
-  icons: [{ rel: "icon", url: "/logo.png" }],
+  icons: [{ rel: "icon", url: "/logo.png", type: "image/png" }],
 };
 
 export default function RootLayout({

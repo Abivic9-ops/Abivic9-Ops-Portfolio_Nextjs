@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Code2, Braces, Paintbrush, Sparkles, Server, Database, GitBranch, Zap, GitCommit, Container, Cloud, Globe } from "lucide-react";
+import { ArrowRight, Code2, Braces, Paintbrush, Sparkles, Server, Database, GitBranch, Zap, GitCommit, Container, Cloud, Globe, Wallet, Phone, CreditCard, Brain } from "lucide-react";
 import { SKILL_CATEGORIES } from "@/lib/skills";
 
 const ICON_MAP: Record<string, typeof Code2> = {
@@ -18,21 +18,61 @@ const ICON_MAP: Record<string, typeof Code2> = {
   docker: Container,
   amazonaws: Cloud,
   vercel: Globe,
+  server: Server,
+  code: Code2,
+  gitbranch: GitBranch,
+  zap: Zap,
+  braves: Braces,
+  database: Database,
+  container: Container,
+  cloud: Cloud,
+  gitcommit: GitCommit,
+  wallet: Wallet,
+  phone: Phone,
+  creditcard: CreditCard,
+  globe: Globe,
+  sparkles: Sparkles,
+  brain: Brain,
 };
 
 const SKILL_COLORS: Record<string, string> = {
-  "React / Next.js": "text-sky-400 border-sky-500/30 bg-sky-500/10",
+  "React": "text-sky-400 border-sky-500/30 bg-sky-500/10",
+  "Next.js": "text-zinc-400 border-zinc-500/30 bg-zinc-500/10",
   "TypeScript": "text-blue-400 border-blue-500/30 bg-blue-500/10",
   "Tailwind CSS": "text-cyan-400 border-cyan-500/30 bg-cyan-500/10",
   "Framer Motion": "text-pink-400 border-pink-500/30 bg-pink-500/10",
+  "Zustand": "text-amber-400 border-amber-500/30 bg-amber-500/10",
+  "React Query": "text-orange-400 border-orange-500/30 bg-orange-500/10",
+  "Storybook": "text-rose-400 border-rose-500/30 bg-rose-500/10",
   "Node.js": "text-lime-400 border-lime-500/30 bg-lime-500/10",
+  "Express": "text-emerald-400 border-emerald-500/30 bg-emerald-500/10",
+  "NestJS": "text-red-400 border-red-500/30 bg-red-500/10",
+  "GraphQL": "text-purple-400 border-purple-500/30 bg-purple-500/10",
+  "REST APIs": "text-indigo-400 border-indigo-500/30 bg-indigo-500/10",
+  "WebSockets": "text-teal-400 border-teal-500/30 bg-teal-500/10",
+  "tRPC": "text-violet-400 border-violet-500/30 bg-violet-500/10",
   "PostgreSQL": "text-indigo-400 border-indigo-500/30 bg-indigo-500/10",
-  "REST / GraphQL": "text-purple-400 border-purple-500/30 bg-purple-500/10",
   "Redis": "text-rose-400 border-rose-500/30 bg-rose-500/10",
-  "Git": "text-orange-400 border-orange-500/30 bg-orange-500/10",
+  "Supabase": "text-emerald-400 border-emerald-500/30 bg-emerald-500/10",
+  "MongoDB": "text-green-400 border-green-500/30 bg-green-500/10",
+  "Prisma": "text-slate-400 border-slate-500/30 bg-slate-500/10",
+  "Drizzle": "text-blue-400 border-blue-500/30 bg-blue-500/10",
   "Docker": "text-sky-400 border-sky-500/30 bg-sky-500/10",
   "AWS": "text-amber-400 border-amber-500/30 bg-amber-500/10",
-  "Vercel / Cloudflare": "text-zinc-400 border-zinc-500/30 bg-zinc-500/10",
+  "Vercel": "text-zinc-400 border-zinc-500/30 bg-zinc-500/10",
+  "Cloudflare": "text-orange-400 border-orange-500/30 bg-orange-500/10",
+  "GitHub Actions": "text-gray-400 border-gray-500/30 bg-gray-500/10",
+  "Terraform": "text-purple-400 border-purple-500/30 bg-purple-500/10",
+  "M-PESA Daraja": "text-green-400 border-green-500/30 bg-green-500/10",
+  "Africa's Talking": "text-sky-400 border-sky-500/30 bg-sky-500/10",
+  "Stripe": "text-indigo-400 border-indigo-500/30 bg-indigo-500/10",
+  "PayPal": "text-blue-400 border-blue-500/30 bg-blue-500/10",
+  "Webhooks": "text-teal-400 border-teal-500/30 bg-teal-500/10",
+  "OpenAI API": "text-emerald-400 border-emerald-500/30 bg-emerald-500/10",
+  "LangChain": "text-lime-400 border-lime-500/30 bg-lime-500/10",
+  "Embeddings": "text-fuchsia-400 border-fuchsia-500/30 bg-fuchsia-500/10",
+  "RAG Pipelines": "text-cyan-400 border-cyan-500/30 bg-cyan-500/10",
+  "Vector Databases": "text-violet-400 border-violet-500/30 bg-violet-500/10",
 };
 
 const allSkills = SKILL_CATEGORIES.flatMap(c => c.skills);
@@ -68,7 +108,7 @@ export function SkillsPreview() {
             </h2>
             <div className="h-1 w-12 bg-primary rounded-full mb-6" />
             <p className="text-muted-foreground max-w-2xl text-lg">
-              The tools and technologies I use to bring ideas to life — from frontend to backend, DevOps to fintech.
+              The tools and technologies I use to bring ideas to life, from frontend to backend, DevOps to fintech.
             </p>
           </div>
           <Link
@@ -98,6 +138,9 @@ export function SkillsPreview() {
               <div>
                 <h3 className="font-semibold text-foreground">{category.name}</h3>
               </div>
+              <span className="ml-auto text-xs font-mono text-muted-foreground bg-background border border-border rounded-full px-2.5 py-0.5">
+                {category.skills.length} skills
+              </span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
               {category.description}
