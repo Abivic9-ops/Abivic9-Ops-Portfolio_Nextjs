@@ -19,8 +19,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Emerald Noir Portfolio",
-  description: "Senior Full-Stack Engineer Portfolio",
+  title: "Victor Mwendwa | Portfolio",
+  description: "Victor Mwendwa | Full-Stack Engineer",
+  icons: [{ rel: "icon", url: "/logo.png" }],
 };
 
 export default function RootLayout({

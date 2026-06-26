@@ -2,10 +2,11 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu } from "lucide-react";
-import { NAV_LINKS, SITE } from "@/lib/site";
+import { type NavLink, NAV_LINKS, SITE } from "@/lib/site";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -18,8 +19,20 @@ export function Navbar() {
   const pathname = usePathname();
   
   // Only track sections on home page
-  const sectionIds = pathname === "/" ? NAV_LINKS.map(link => link.href.replace("/#", "")).filter(Boolean) : [];
+  const sectionIds = pathname === "/" ? NAV_LINKS.map(link => link.section).filter((s): s is string => !!s) : [];
   const activeSection = useActiveSection(sectionIds);
+
+  const scrollToSection = React.useCallback((sectionId: string) => {
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  const handleNavClick = React.useCallback((e: React.MouseEvent, link: NavLink) => {
+    if (link.section && pathname === "/") {
+      e.preventDefault();
+      scrollToSection(link.section);
+    }
+  }, [pathname, scrollToSection]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 24) {
@@ -42,10 +55,14 @@ export function Navbar() {
       <div className={`mx-auto flex items-center justify-between ${isScrolled ? "max-w-6xl" : "w-full"}`}>
         
         {/* Logo / Brand */}
-        <Link href="/" className="font-semibold tracking-tight text-lg flex gap-2 items-center">
-          <div className="w-6 h-6 rounded-md bg-primary flex items-center justify-center text-primary-foreground font-bold text-xs">
-            {SITE.name.charAt(0)}
-          </div>
+        <Link href="/" className="font-semibold tracking-tight text-lg flex gap-2 items-center shrink-0">
+          <Image
+            src="/logo.png"
+            alt={SITE.name}
+            width={28}
+            height={28}
+            className="rounded-md"
+          />
           <span className="hidden sm:inline-block">{SITE.name}</span>
         </Link>
 
@@ -53,13 +70,14 @@ export function Navbar() {
         <nav className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === "/" 
-              ? activeSection === link.href.replace("/#", "")
+              ? activeSection === link.section
               : pathname === link.href;
 
             return (
               <Link
                 key={link.label}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link)}
                 className={`relative px-4 py-2 text-sm font-medium transition-colors hover:text-foreground ${
                   isActive ? "text-foreground" : "text-muted-foreground"
                 }`}
@@ -106,7 +124,14 @@ export function Navbar() {
                   <SheetTitle>Navigation Menu</SheetTitle>
                 </SheetHeader>
                 <div className="flex items-center justify-between">
-                  <Link href="/" className="font-semibold tracking-tight text-lg">
+                  <Link href="/" className="font-semibold tracking-tight text-lg flex gap-2 items-center">
+                    <Image
+                      src="/logo.png"
+                      alt={SITE.name}
+                      width={24}
+                      height={24}
+                      className="rounded-md"
+                    />
                     {SITE.name}
                   </Link>
                   <div className="flex items-center gap-2">
@@ -118,6 +143,7 @@ export function Navbar() {
                     <Link
                       key={link.label}
                       href={link.href}
+                      onClick={(e) => handleNavClick(e, link)}
                       className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors px-4 py-3 rounded-xl hover:bg-muted/50"
                     >
                       {link.label}

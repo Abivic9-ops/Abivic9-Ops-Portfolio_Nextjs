@@ -86,7 +86,13 @@ export function Services() {
             </p>
           </div>
           <Link 
-            href="/#contact" 
+            href="/"
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+              }
+            }} 
             className="text-primary font-medium hover:underline inline-flex items-center shrink-0"
           >
             Discuss a project →

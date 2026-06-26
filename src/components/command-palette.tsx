@@ -61,7 +61,10 @@ export function CommandPalette() {
             <Home className="mr-2 h-4 w-4" />
             <span>Home</span>
           </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => router.push("/#about"))}>
+          <CommandItem onSelect={() => runCommand(() => {
+            router.push("/");
+            requestAnimationFrame(() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }));
+          })}>
             <User className="mr-2 h-4 w-4" />
             <span>About</span>
           </CommandItem>

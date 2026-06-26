@@ -164,7 +164,7 @@ export function Contact() {
                       <FormItem>
                         <FormLabel>Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" className="bg-surface" {...field} />
+                          <Input placeholder="Joseph Kamau" className="bg-surface" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -177,7 +177,7 @@ export function Contact() {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="john@example.com" type="email" className="bg-surface" {...field} />
+                          <Input placeholder="jerome@example.com" type="email" className="bg-surface" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

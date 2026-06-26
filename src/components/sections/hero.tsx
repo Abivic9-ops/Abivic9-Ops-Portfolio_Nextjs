@@ -1,16 +1,28 @@
 "use client";
 
-import { motion } from "framer-motion";
+import * as React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Download, Mail, Code, Database, Cloud, Smartphone } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Download, Mail, Code, Database, Cloud, Smartphone, ChevronDown } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SITE } from "@/lib/site";
 
+const TITLES = [
+  { text: "Full Stack Developer",      color: "hsl(148, 73%, 38%)"   },
+  { text: "AI Product Builder",  color: "hsl(148, 60%, 50%)"   },
+  { text: "System Architect",    color: "hsl(153, 55%, 35%)"   },
+  { text: "UI/UX Designer",      color: "hsl(148, 45%, 55%)"   },
+  { text: "Graphics Designer",   color: "hsl(143, 55%, 38%)"   },
+  { text: "Problem Solver",      color: "hsl(158, 50%, 40%)"   },
+  { text: "Creative Thinker",    color: "hsl(148, 70%, 48%)"   },
+];
+
 const STATS = [
-  { value: "6+", label: "Years Exp." },
-  { value: "40+", label: "Projects" },
-  { value: "15+", label: "Clients" },
+  { value: "1.5+", label: "Years Exp." },
+  { value: "15+", label: "Projects" },
+  { value: "5+", label: "Clients" },
 ];
 
 const FLOATING_BADGES = [
@@ -21,8 +33,17 @@ const FLOATING_BADGES = [
 ];
 
 export function Hero() {
+  const [currentTitle, setCurrentTitle] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTitle((prev) => (prev + 1) % TITLES.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-24">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-12">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-20%] left-0 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_left,_rgba(34,211,117,0.12),_transparent_60%)]" />
@@ -52,15 +73,24 @@ export function Hero() {
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.1]">
                 <span className="text-muted-foreground font-normal text-2xl sm:text-3xl lg:text-4xl block mb-2">
-                  Hello, I'm
-                </span>
-                <span className="bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-                  {SITE.name}
-                </span>
-                <span className="block text-2xl sm:text-3xl lg:text-4xl mt-3 text-muted-foreground font-normal">
-                  {SITE.role}
+                  Hello There, Victor Here
                 </span>
               </h1>
+              <div className="h-12 sm:h-14 lg:h-16 overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentTitle}
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -30, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    style={{ color: TITLES[currentTitle].color }}
+                    className="block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight"
+                  >
+                    {TITLES[currentTitle].text}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
             </motion.div>
 
             {/* Description */}
@@ -69,8 +99,8 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
               className="text-lg text-muted-foreground leading-relaxed max-w-xl"
-            >
-              Crafting high-performance SaaS applications and robust backend systems that deliver real value. I specialize in modern web technologies and African fintech integrations.
+             >
+             Who Designs,crafts, builds and maintains high performance SaaS applications and pairs robust, high performing backends with thoughtful, human centered design. I go looking for the overlooked, toughest problems and build complete solutions that deliver real value to the people and communities they serve.
             </motion.p>
 
             {/* Stats */}
@@ -136,8 +166,14 @@ export function Hero() {
               <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-gradient-to-br from-surface via-background to-surface border border-border shadow-2xl group">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:20px_20px]" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent border-2 border-primary/30 flex items-center justify-center">
-                    <span className="text-6xl font-bold text-primary/60">{SITE.name.charAt(0)}</span>
+                  <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent border-2 border-primary/30 flex items-center justify-center overflow-hidden">
+                    <Image
+                      src="/logo.png"
+                      alt={SITE.name}
+                      width={192}
+                      height={192}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
                 </div>
                 {/* Decorative corner gradient */}
@@ -163,27 +199,28 @@ export function Hero() {
                 </motion.div>
               ))}
 
-              {/* Scroll indicator */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
-                className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-              >
-                <span className="text-xs text-muted-foreground">Scroll Down</span>
-                <motion.div
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="w-5 h-8 rounded-full border border-border flex items-start justify-center p-1"
-                >
-                  <motion.div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                </motion.div>
-              </motion.div>
             </motion.div>
           </div>
 
         </div>
       </div>
+
+      {/* Scroll indicator - centered at bottom of hero */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="text-xs text-muted-foreground">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="w-5 h-8 rounded-full border border-border flex items-start justify-center p-1"
+        >
+          <motion.div className="w-1.5 h-1.5 rounded-full bg-primary" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

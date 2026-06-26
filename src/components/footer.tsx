@@ -89,10 +89,6 @@ export function Footer() {
           <p className="text-sm text-muted-foreground text-center sm:text-left">
             &copy; {currentYear} {SITE.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">Built with Next.js & Tailwind</span>
-            <ThemeToggle />
-          </div>
         </div>
       </div>
     </footer>
