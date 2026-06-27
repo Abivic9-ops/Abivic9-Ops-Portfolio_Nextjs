@@ -10,6 +10,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { CommandPalette } from "@/components/command-palette";
+import { ChatWidget } from "@/components/chat/chat-widget";
 import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
@@ -46,6 +47,7 @@ export default function RootLayout({
           <Footer />
           <ScrollToTop />
           <WhatsAppFab />
+          <ChatWidget />
           <CommandPalette />
           <Toaster />
         </ThemeProvider>
