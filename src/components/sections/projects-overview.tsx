@@ -69,7 +69,7 @@ export function ProjectsOverview() {
               {[...displayProjects, ...displayProjects].map((project, idx) => (
                 <div
                   key={`${project.slug}-${idx}`}
-                  className="shrink-0 w-[380px] md:w-[440px]"
+                  className="shrink-0 w-[300px] sm:w-[380px] md:w-[440px]"
                 >
                   <ProjectCard project={project} idx={idx % 9} />
                 </div>

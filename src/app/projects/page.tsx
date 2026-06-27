@@ -165,7 +165,7 @@ export default function ProjectsArchive() {
             <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto">
               Let&apos;s discuss how we can build something great together.
             </p>
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href={SITE.calendly}
                 target="_blank"
