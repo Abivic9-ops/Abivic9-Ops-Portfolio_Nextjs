@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Trash2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Message } from "@/hooks/use-chat";
+import { BotAvatar } from "./bot-avatar";
 import { MessageBubble } from "./message-bubble";
 import { TypingIndicator } from "./typing-indicator";
 import { SuggestedChips } from "./suggested-chips";
@@ -114,7 +115,7 @@ export function ChatPanel({
         /* desktop card */
         className={cn(
           PANEL_DESKTOP,
-          "fixed bottom-6 right-6 z-50 hidden flex-col overflow-hidden rounded-xl border border-border bg-card shadow-2xl sm:flex"
+          "fixed bottom-6 right-24 z-50 hidden flex-col overflow-hidden rounded-xl border border-border bg-card shadow-2xl sm:flex"
         )}
         initial={{ opacity: 0, scale: 0.92, transformOrigin: "bottom right" }}
         animate={{ opacity: 1, scale: 1 }}
@@ -187,9 +188,7 @@ function PanelContent({
     <>
       {/* header */}
       <div className="flex items-center gap-3 border-b border-border px-4 py-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/15 text-xs font-bold text-primary select-none ring-1 ring-primary/30">
-          VM
-        </div>
+        <BotAvatar size={32} showRing />
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
@@ -232,21 +231,7 @@ function PanelContent({
       >
         {messages.length === 0 ? (
           <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-              <svg
-                className="h-6 w-6 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"
-                />
-              </svg>
-            </div>
+            <BotAvatar size={48} />
             <p className="text-sm text-foreground font-medium">
               Hi! I&apos;m Victor&apos;s AI assistant.
             </p>
@@ -257,13 +242,19 @@ function PanelContent({
           </div>
         ) : (
           <div className="flex flex-col gap-4">
-            {messages.map((msg, i) => (
-              <MessageBubble
-                key={msg.id}
-                message={msg}
-                isLatest={i === messages.length - 1}
-              />
-            ))}
+            {messages.map((msg, i) => {
+              const isFirstAssistant =
+                msg.role === "assistant" &&
+                (i === 0 || messages[i - 1]?.role !== "assistant");
+              return (
+                <MessageBubble
+                  key={msg.id}
+                  message={msg}
+                  isLatest={i === messages.length - 1}
+                  showAvatar={isFirstAssistant}
+                />
+              );
+            })}
             {isStreaming && <TypingIndicator />}
           </div>
         )}

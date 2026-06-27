@@ -1,13 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { BotAvatar } from "./bot-avatar";
 
 export function TypingIndicator() {
   return (
     <div className="flex items-start gap-2.5" role="status" aria-label="Assistant is typing">
-      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary select-none">
-        VM
-      </div>
+      <BotAvatar size={28} />
       <div className="flex items-center gap-1 rounded-2xl rounded-bl-md bg-card px-3.5 py-2.5 border border-border">
         {[0, 1, 2].map((i) => (
           <motion.span

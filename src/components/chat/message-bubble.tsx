@@ -6,10 +6,12 @@ import remarkGfm from "remark-gfm";
 import { Copy, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Message } from "@/hooks/use-chat";
+import { BotAvatar } from "./bot-avatar";
 
 type MessageBubbleProps = {
   message: Message;
   isLatest: boolean;
+  showAvatar?: boolean;
 };
 
 function CodeBlock({ children, className }: { children: string; className?: string }) {
@@ -123,7 +125,7 @@ function ChatMarkdown({ content }: { content: string }) {
   );
 }
 
-export function MessageBubble({ message, isLatest }: MessageBubbleProps) {
+export function MessageBubble({ message, isLatest, showAvatar }: MessageBubbleProps) {
   const isUser = message.role === "user";
 
   return (
@@ -133,12 +135,9 @@ export function MessageBubble({ message, isLatest }: MessageBubbleProps) {
         isUser ? "flex-row-reverse" : "flex-row"
       )}
     >
-      {/* avatar — assistant only */}
-      {!isUser && (
-        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary select-none">
-          VM
-        </div>
-      )}
+      {/* avatar — assistant only, first message of each run */}
+      {!isUser && showAvatar && <BotAvatar size={28} />}
+      {!isUser && !showAvatar && <div className="w-7 shrink-0" />}
 
       <div className="group flex max-w-[85%] flex-col gap-0.5">
         <div

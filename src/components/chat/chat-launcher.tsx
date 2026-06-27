@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircleMore, X } from "lucide-react";
+import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BotAvatar } from "./bot-avatar";
 
 type ChatLauncherProps = {
   isOpen: boolean;
@@ -43,8 +44,8 @@ export function ChatLauncher({ isOpen, onClick }: ChatLauncherProps) {
           aria-hidden="true"
         />
 
-        <span className="relative">
-          {isOpen ? <X className="h-5 w-5" /> : <MessageCircleMore className="h-5 w-5" />}
+        <span className="relative flex items-center justify-center">
+          {isOpen ? <X className="h-5 w-5" /> : <BotAvatar size={32} />}
         </span>
       </motion.button>
     </div>

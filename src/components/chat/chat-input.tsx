@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useCallback, KeyboardEvent } from "react";
-import { ArrowUp, RefreshCw } from "lucide-react";
+import { Send, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type ChatInputProps = {
@@ -94,13 +94,13 @@ export function ChatInput({
           )}
           aria-label="Send message"
         >
-          <ArrowUp className="h-4 w-4" />
+          <Send className="h-4 w-4" />
         </button>
       </div>
 
       {/* helper */}
       <p className="text-[10px] text-muted-foreground px-1">
-        AI can make mistakes. Verify important info.
+        Feel free to ask anything about me
       </p>
     </div>
   );
