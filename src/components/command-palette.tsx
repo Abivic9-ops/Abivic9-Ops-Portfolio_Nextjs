@@ -4,7 +4,6 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { 
-  FileText, 
   Moon, 
   Sun, 
   Laptop, 
@@ -14,7 +13,7 @@ import {
   Briefcase,
   Home,
   User,
-  Wrench
+  FileText,
 } from "lucide-react";
 
 import {
@@ -61,10 +60,7 @@ export function CommandPalette() {
             <Home className="mr-2 h-4 w-4" />
             <span>Home</span>
           </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => {
-            router.push("/");
-            requestAnimationFrame(() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }));
-          })}>
+          <CommandItem onSelect={() => runCommand(() => router.push("/about"))}>
             <User className="mr-2 h-4 w-4" />
             <span>About</span>
           </CommandItem>
@@ -75,14 +71,6 @@ export function CommandPalette() {
           <CommandItem onSelect={() => runCommand(() => router.push("/skills"))}>
             <Code className="mr-2 h-4 w-4" />
             <span>Skills Breakdown</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => router.push("/blog"))}>
-            <FileText className="mr-2 h-4 w-4" />
-            <span>Blog</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => router.push("/uses"))}>
-            <Wrench className="mr-2 h-4 w-4" />
-            <span>Uses (Setup & Gear)</span>
           </CommandItem>
         </CommandGroup>
 

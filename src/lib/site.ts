@@ -2,6 +2,7 @@ export const SITE = {
   name: "Victor Mwendwa",
   role: "Senior Full-Stack Engineer",
   availability: "Open to talk and work anytime",
+  positioning:"What if your vision become your niches invaluable tool?",
   email: "vmwendwa486@gmail.com",
   linkedin: "https://linkedin.com/in/your-handle",
   calendly: "https://calendly.com/your-handle",
@@ -16,11 +17,9 @@ export type NavLink = {
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/", section: "home" },
-  { label: "About", href: "/", section: "about" },
+  { label: "About", href: "/about" },
   { label: "Services", href: "/", section: "services" },
   { label: "Projects", href: "/projects" },
   { label: "Skills", href: "/skills" },
-  { label: "Blog", href: "/blog" },
-  { label: "Uses", href: "/uses" },
-  { label: "Contact", href: "/", section: "contact" },
+  { label: "Contact", href: "/contact" },
 ];

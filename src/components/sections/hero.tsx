@@ -4,7 +4,7 @@ import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Download, Mail, Code, Database, Cloud, Smartphone, ChevronDown } from "lucide-react";
+import { ArrowRight, Download, Mail, ShieldCheck, CheckCircle } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SITE } from "@/lib/site";
@@ -16,7 +16,6 @@ const TITLES = [
   { text: "UI/UX Designer",      color: "hsl(148, 45%, 55%)"   },
   { text: "Graphics Designer",   color: "hsl(143, 55%, 38%)"   },
   { text: "Problem Solver",      color: "hsl(158, 50%, 40%)"   },
-  { text: "Creative Thinker",    color: "hsl(148, 70%, 48%)"   },
 ];
 
 const STATS = [
@@ -26,10 +25,8 @@ const STATS = [
 ];
 
 const FLOATING_BADGES = [
-  { icon: Code, label: "Next.js", x: "-20%", y: "10%", delay: 0.2 },
-  { icon: Database, label: "PostgreSQL", x: "25%", y: "5%", delay: 0.4 },
-  { icon: Cloud, label: "AWS", x: "-15%", y: "75%", delay: 0.6 },
-  { icon: Smartphone, label: "M-PESA API", x: "20%", y: "80%", delay: 0.8 },
+  { icon: ShieldCheck, label: "Proven Credibility", x: "30%", y: "2%", delay: 0 },
+  { icon: CheckCircle, label: "Impactful Results", x: "-25%", y: "90%", delay: 1.5 },
 ];
 
 export function Hero() {
@@ -100,7 +97,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="text-lg text-muted-foreground leading-relaxed max-w-xl"
              >
-             Who Designs,crafts, builds and maintains high performance SaaS applications and pairs robust, high performing backends with thoughtful, human centered design. I go looking for the overlooked, toughest problems and build complete solutions that deliver real value to the people and communities they serve.
+             Who Designs,crafts, builds and maintains end-to-end grade software application built on trust,stunning designs and relentless performance.Every decision serves the sole purpose of solving challenges and delivering wins and value to the community.
             </motion.p>
 
             {/* Stats */}
@@ -149,6 +146,7 @@ export function Hero() {
                 Email me
               </a>
             </motion.div>
+
           </div>
 
           {/* Right Column - Image/Visual */}
@@ -184,18 +182,34 @@ export function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
 
-              {/* Floating badges */}
+              {/* Floating badges — diagonal: top-right, bottom-left */}
               {FLOATING_BADGES.map((badge) => (
                 <motion.div
                   key={badge.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 + badge.delay }}
-                  className="absolute flex items-center gap-2 px-3 py-2 rounded-xl bg-background border border-border shadow-lg backdrop-blur-sm"
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    y: [0, -4, 0],
+                  }}
+                  transition={{
+                    opacity: { duration: 0.5, delay: 0.6 + badge.delay },
+                    scale: { duration: 0.5, delay: 0.6 + badge.delay },
+                    y: {
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: badge.delay,
+                    },
+                  }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(34,211,117,0.15)" }}
+                  className="absolute flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-background/80 border border-border/60 shadow-md backdrop-blur-md cursor-default"
                   style={{ top: badge.y, left: `calc(50% + ${badge.x})` }}
                 >
-                  <badge.icon className="w-4 h-4 text-primary" />
-                  <span className="text-xs font-medium text-foreground whitespace-nowrap">{badge.label}</span>
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <badge.icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <span className="text-[13px] font-medium text-foreground whitespace-nowrap tracking-tight">{badge.label}</span>
                 </motion.div>
               ))}
 

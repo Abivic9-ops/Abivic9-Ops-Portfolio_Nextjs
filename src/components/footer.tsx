@@ -52,18 +52,18 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Quick Links */}
           <div>
-            <h3 className="font-medium text-foreground mb-4">Resources</h3>
+            <h3 className="font-medium text-foreground mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Blog
+                <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  About Me
                 </Link>
               </li>
               <li>
-                <Link href="/uses" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Uses
+                <Link href="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Projects
                 </Link>
               </li>
               <li>

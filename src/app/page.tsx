@@ -4,9 +4,8 @@ import { Services } from "@/components/sections/services";
 import { ProjectsOverview } from "@/components/sections/projects-overview";
 import { SkillsPreview } from "@/components/sections/skills-preview";
 import { Experience } from "@/components/sections/experience";
-
-import { Testimonials } from "@/components/sections/testimonials";
-import { Contact } from "@/components/sections/contact";
+import { WhatIBring } from "@/components/sections/what-i-bring";
+import { WorkTogetherCTA } from "@/components/sections/work-together-cta";
 
 export default function Home() {
   return (
@@ -17,8 +16,8 @@ export default function Home() {
       <ProjectsOverview />
       <SkillsPreview />
       <Experience />
-      <Testimonials />
-      <Contact />
+      <WhatIBring />
+      <WorkTogetherCTA />
     </>
   );
 }

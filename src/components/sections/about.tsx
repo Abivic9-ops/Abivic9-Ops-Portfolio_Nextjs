@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Layers, Zap, Sparkles } from "lucide-react";
+import { Code2, Layers, Zap, Sparkles, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
 import { StatCounter } from "@/components/stat-counter";
 import { SITE } from "@/lib/site";
@@ -153,6 +154,23 @@ export function About() {
                 );
               })}
             </div>
+
+            {/* Learn More link */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              className="mt-8 text-right"
+            >
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 font-medium transition-colors group"
+              >
+                <span>Learn more about me</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
           </motion.div>
 
         </div>
