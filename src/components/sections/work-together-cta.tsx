@@ -43,9 +43,9 @@ export function WorkTogetherCTA() {
           </h2>
 
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed mb-12">
-           I'm eager to find my next challenge and learning opportunity in building high-impact solutions with a team.
+           I&apos;m eager to find my next challenge and learning opportunity in building high-impact solutions with a team.
 Creating something awesome? Or looking for someone who can help you build it? 
-Let's start a conversation.
+Let&apos;s start a conversation.
           </p>
         </motion.div>
 

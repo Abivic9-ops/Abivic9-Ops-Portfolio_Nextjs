@@ -15,41 +15,49 @@ const MAX_TURNS = 10;
 const MAX_RETRIES = 3;
 const RETRY_BASE_DELAY = 2000;
 
+const loadStoredMessages = (): Message[] => {
+  if (typeof window === "undefined") return [];
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    if (!saved) return [];
+    const parsed = JSON.parse(saved);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+};
+
+const loadStoredOpenState = (): boolean => {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.localStorage.getItem(STORAGE_OPEN_KEY) === "true";
+  } catch {
+    return false;
+  }
+};
+
 export function useChat() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(loadStoredMessages);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(loadStoredOpenState);
 
-  const loaded = useRef(false);
-  const messagesRef = useRef(messages);
-  messagesRef.current = messages;
+  const messagesRef = useRef<Message[]>(messages);
 
   useEffect(() => {
-    if (loaded.current) return;
-    loaded.current = true;
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) setMessages(parsed);
-      }
-      const openState = localStorage.getItem(STORAGE_OPEN_KEY);
-      if (openState === "true") setIsOpen(true);
-    } catch { /* ignore */ }
-  }, []);
+    messagesRef.current = messages;
+  }, [messages]);
 
   useEffect(() => {
-    if (!loaded.current) return;
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
     } catch { /* ignore */ }
   }, [messages]);
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_OPEN_KEY, String(isOpen));
+      window.localStorage.setItem(STORAGE_OPEN_KEY, String(isOpen));
     } catch { /* ignore */ }
   }, [isOpen]);
 
@@ -71,7 +79,11 @@ export function useChat() {
         timestamp: Date.now(),
       };
 
-      setMessages((prev) => [...prev, userMsg]);
+      setMessages((prev) => {
+        const next = [...prev, userMsg];
+        messagesRef.current = next;
+        return next;
+      });
       setInput("");
       setIsStreaming(true);
 
@@ -113,10 +125,14 @@ export function useChat() {
           if (!reader) throw new Error("no response body");
 
           const assistantId = crypto.randomUUID();
-          setMessages((prev) => [
-            ...prev,
-            { id: assistantId, role: "assistant", content: "", timestamp: Date.now() },
-          ]);
+          setMessages((prev) => {
+            const next = [
+              ...prev,
+              { id: assistantId, role: "assistant", content: "", timestamp: Date.now() },
+            ];
+            messagesRef.current = next;
+            return next;
+          });
 
           const decoder = new TextDecoder();
           let buffer = "";

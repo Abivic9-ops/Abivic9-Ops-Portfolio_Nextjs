@@ -43,8 +43,9 @@ export async function sendContact(data: ContactFormData): Promise<{ success: boo
     await new Promise((resolve) => setTimeout(resolve, 1000));
     return { success: true, message: "Demo mode: Message 'sent' successfully! (Configure Formspree ID to send real emails)" };
     
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Contact form error:", error);
-    return { success: false, message: error.message || "Failed to send message. Please try again." };
+    const message = error instanceof Error ? error.message : "Failed to send message. Please try again.";
+    return { success: false, message };
   }
 }
