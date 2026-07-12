@@ -126,7 +126,7 @@ export function useChat() {
 
           const assistantId = crypto.randomUUID();
           setMessages((prev) => {
-            const next = [
+            const next: Message[] = [
               ...prev,
               { id: assistantId, role: "assistant", content: "", timestamp: Date.now() },
             ];

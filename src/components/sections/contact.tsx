@@ -79,7 +79,7 @@ export function Contact() {
               Let&apos;s build something <span className="text-primary">extraordinary</span> together.
             </h2>
             <p className="text-lg text-muted-foreground mb-10 leading-relaxed max-w-md">
-              Whether you need a modern web application, a robust backend integration, or technical consulting, I'm here to help turn your ideas into reality.
+              Whether you need a modern web application, a robust backend integration, or technical consulting, I&apos;m here to help turn your ideas into reality.
             </p>
 
             <div className="space-y-6 mb-12">
