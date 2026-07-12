@@ -9,15 +9,18 @@ import {
   Users,
   ArrowRight,
 } from "lucide-react";
+import { SectionTitle } from "@/components/section-title";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const PILLARS = [
   {
     icon: Lightbulb,
-    title: "Strategic Problem-Solving",
+    title: "Strategic Problem Solving",
     items: [
       "Translate business challenges into scalable technical architecture",
       "Identify hidden dependencies before they become bottlenecks",
-      "Propose multiple solution paths with trade-off analysis",
+      "Propose multiple solution paths: trade off analysis, risk assessment, cost benefit",
       "Design systems that solve today's problem without creating tomorrow's",
       "Risk assessment & contingency planning built into every solution",
     ],
@@ -29,10 +32,10 @@ const PILLARS = [
     title: "Delivery & Execution",
     items: [
       "Predictable timelines with transparent milestone tracking",
-      "Code that is production-ready on day one",
-      "Testing at every layer—unit, integration, end-to-end",
-      "Zero-surprise delivery—stakeholders informed at every stage",
-      "Post-launch monitoring & optimization roadmap included",
+      "Code that is production ready: shipped on day one",
+      "Testing at every layer: unit, integration, end to end",
+      "Zero surprise delivery: stakeholders informed at every stage",
+      "Post launch monitoring: optimization roadmap included",
     ],
     gradient: "from-green-400/20 via-green-500/10 to-transparent",
     borderColor: "border-green-500/20",
@@ -44,7 +47,7 @@ const PILLARS = [
       "Direct alignment between technical work and revenue goals",
       "ROI calculation for every major technical decision",
       "Cost optimization without quality sacrifice",
-      "Time-to-market acceleration through smart prioritization",
+      "Time to market: acceleration through smart prioritization",
       "Measurable KPIs from day one, not vague deliverables",
     ],
     gradient: "from-teal-400/20 via-teal-500/10 to-transparent",
@@ -55,10 +58,10 @@ const PILLARS = [
     title: "Collaborative Approach",
     items: [
       "Bridge builder between technical teams and business stakeholders",
-      "Clear communication with non-technical decision-makers",
-      "Mentorship culture—leveling up your team's capabilities",
+      "Clear communication: bridging technical and non technical stakeholders",
+      "Mentorship culture: leveling up your team's capabilities",
       "Proactive communication before problems arise",
-      "Partnership mindset—invested in your long-term success",
+      "Partnership mindset: invested in your long term success",
     ],
     gradient: "from-primary/20 via-primary/10 to-transparent",
     borderColor: "border-primary/20",
@@ -67,7 +70,7 @@ const PILLARS = [
 
 export function WhatIBring() {
   return (
-    <section id="what-i-bring" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="what-i-bring" className="py-16 md:py-20 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.05),_transparent_60%)]" />
@@ -82,12 +85,10 @@ export function WhatIBring() {
           viewport={{ once: true, margin: "-100px" }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            What I Bring
-          </h2>
+          <SectionTitle className="mb-6">What I Bring</SectionTitle>
           <div className="h-1 w-12 bg-primary rounded-full mb-6" />
           <p className="text-muted-foreground max-w-2xl text-lg">
-            A sneak preview of what working with me looks like — four pillars that define every project I touch.
+            A sneak preview of what working with me looks like: four pillars that define every project I touch.
           </p>
         </motion.div>
 
@@ -144,9 +145,12 @@ export function WhatIBring() {
         >
           <Link
             href="/about"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors group"
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-10 py-4 text-sm font-semibold shadow-lg inline-flex items-center gap-2 group"
+            )}
           >
-            <span>Learn more about me and my full approach</span>
+            Learn More About My Full Approach
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </motion.div>

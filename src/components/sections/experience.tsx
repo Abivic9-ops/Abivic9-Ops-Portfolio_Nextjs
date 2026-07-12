@@ -1,92 +1,134 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Briefcase, MapPin, CalendarDays, GraduationCap, Users } from "lucide-react";
+import { SectionTitle } from "@/components/section-title";
 
 const EXPERIENCES = [
   {
-    role: "Lead Full-Stack Engineer",
-    company: "Fintech Startup (Kenya)",
-    date: "2024 - Present",
+    role: "Founder & Lead Developer",
+    company: "Vessora",
+    date: "2026 - Present",
+    location: "Nairobi, Kenya",
     description: [
-      "Architected and deployed a highly scalable M-PESA payment integration handling 10k+ daily transactions.",
-      "Led a team of 4 engineers in migrating a legacy monolithic application to a Next.js App Router and Node.js microservices architecture.",
-      "Reduced cloud infrastructure costs by 30% through Docker optimization and efficient PostgreSQL query tuning."
-    ]
+      "Founded Vessora, a digital products studio focused on building intuitive web tools and platforms",
+      "Own the full lifecycle: idea validation, system design, development, deployment, and client handoff",
+      "Ship production grade applications using Next.js, TypeScript, and cloud infrastructure",
+    ],
   },
   {
-    role: "Senior Frontend Engineer",
-    company: "Global SaaS Agency",
-    date: "2022 - 2024",
+    role: "Remote Frontend Engineer (Apprentice)",
+    company: "Open Source Collaborative",
+    date: "2025 - Completed",
+    location: "Remote",
     description: [
-      "Spearheaded the development of a unified Design System using React, Tailwind CSS, and Storybook, adopted by 5 internal teams.",
-      "Implemented complex data visualization dashboards using Recharts and D3.js, improving client reporting efficiency by 40%.",
-      "Mentored junior developers and conducted weekly technical code review sessions."
-    ]
+      "Apply taught principles from modern frontend courses to real world collaborative projects",
+      "Work alongside senior developers: participate in code reviews, pair programming, and sprint planning",
+      "Build UI components, fix bugs, and contribute to documentation with a learning first mindset",
+    ],
   },
   {
-    role: "Full-Stack Developer",
-    company: "Tech Solutions Ltd",
-    date: "2019 - 2022",
+    role: "Community Mentor",
+    company: "Kitengela Tech Hub",
+    date: "2025 -Completed",
+    location: "Kitengela, Kenya",
     description: [
-      "Built an internal CRM system from scratch using Vue.js and Laravel, replacing 3 disconnected legacy tools.",
-      "Integrated various third-party APIs including Africa's Talking for SMS and Twilio for VoIP.",
-      "Established CI/CD pipelines using automated workflows, reducing deployment time from hours to minutes."
-    ]
-  }
+      "Mentor local students and aspiring developers in web fundamentals, JavaScript, and React",
+      "Organise weekly study groups and hands on coding workshops for beginners in the community",
+      "Help bridge the gap between classroom theory and practical industry ready skills",
+    ],
+  },
 ];
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const itemAnim = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
 export function Experience() {
   return (
-    <section id="experience" className="py-24 md:py-32 bg-surface/30 border-y border-border">
-      <div className="max-w-4xl mx-auto px-6">
-        
+    <section id="experience" className="py-16 md:py-20 bg-surface/30 border-y border-border relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.04),_transparent_60%)]" />
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="mb-16 md:mb-24 text-center md:text-left"
+          className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            Experience
-          </h2>
-          <div className="h-1 w-12 bg-primary rounded-full mx-auto md:mx-0" />
+          <SectionTitle className="mb-6">Experience</SectionTitle>
+          <p className="text-muted-foreground max-w-2xl">
+            Building products, learning from peers, and giving back to the community that raised me.
+          </p>
         </motion.div>
 
-        <div className="relative border-l border-border/50 pl-6 md:pl-8 ml-4 md:ml-0 space-y-16">
-          {EXPERIENCES.map((exp, index) => (
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+          {EXPERIENCES.map((exp) => (
             <motion.div
-              key={`${exp.company}-${index}`}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative"
+              key={`${exp.company}-${exp.role}`}
+              variants={itemAnim}
+              className="bg-background/60 border border-border/60 rounded-2xl p-6 flex flex-col hover:border-primary/30 hover:shadow-[0_0_30px_rgba(34,211,117,0.04)] transition-all duration-300 group"
             >
-              {/* Emerald dot marker */}
-              <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-surface border-2 border-primary shadow-[0_0_10px_rgba(34,211,117,0.5)]" />
-              
-              <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-4 gap-2">
-                <div>
-                  <h3 className="text-xl font-bold text-foreground">{exp.role}</h3>
-                  <p className="text-lg text-muted-foreground font-medium">{exp.company}</p>
+              {/* Top accent line */}
+              <div className="w-10 h-1 bg-primary/40 rounded-full mb-5" />
+
+              {/* Header */}
+              <div className="mb-4">
+                <div className="flex items-start justify-between gap-3 mb-1">
+                  <h3 className="text-base font-bold text-foreground leading-snug">{exp.role}</h3>
                 </div>
-                <span className="text-sm font-mono text-primary bg-primary/10 px-3 py-1 rounded-full self-start md:self-auto">
+                <p className="text-sm font-medium text-primary">{exp.company}</p>
+              </div>
+
+              {/* Meta row */}
+              <div className="flex items-center gap-4 mb-5 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1.5">
+                  <CalendarDays className="w-3.5 h-3.5" aria-hidden="true" />
                   {exp.date}
                 </span>
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
+                  {exp.location}
+                </span>
               </div>
-              
-              <ul className="space-y-3 mt-4 text-muted-foreground">
+
+              {/* Description */}
+              <ul className="space-y-2.5 flex-1">
                 {exp.description.map((item, idx) => (
-                  <li key={idx} className="flex gap-3">
-                    <span className="text-primary mt-1.5 opacity-70">•</span>
-                    <span className="leading-relaxed text-sm md:text-base">{item}</span>
+                  <li key={idx} className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary/40 mt-1.5 shrink-0" />
+                    {item}
                   </li>
                 ))}
               </ul>
+
+              {/* Footer link */}
+              <div className="mt-5 pt-4 border-t border-border/40">
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-primary/60 group-hover:text-primary transition-colors">
+                  <Briefcase className="w-3.5 h-3.5" />
+                  {exp.date}
+                </span>
+              </div>
             </motion.div>
           ))}
-        </div>
-
+        </motion.div>
       </div>
     </section>
   );

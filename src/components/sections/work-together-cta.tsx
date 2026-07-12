@@ -8,14 +8,18 @@ import { cn } from "@/lib/utils";
 import { SITE } from "@/lib/site";
 
 const AVAILABILITY_ITEMS = [
-  "Full-stack engineering roles — contract or full-time",
-  "Technical partnerships and custom software builds",
-  "Developer mentorship and education initiatives",
+  "Full stack engineering roles: contract or full time",
+  "Open Source Contributions",
+  "Internship-to-Hire Opportunities",
+  "Technical Mentorship/Pair Programming",
+  "Remote or Hybrid Work Arrangements",
+  "Cross-Functional Team Collaboration",
+   "Learning-Focused Roles",
 ];
 
 export function WorkTogetherCTA() {
   return (
-    <section className="relative py-28 md:py-40 overflow-hidden">
+    <section className="relative py-20 md:py-24 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.06),_transparent_60%)]" />
@@ -39,8 +43,9 @@ export function WorkTogetherCTA() {
           </h2>
 
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed mb-12">
-            I&apos;m actively looking for engineering roles where I can ship high-impact software.
-            If you&apos;re building something meaningful — or hiring someone who does — I&apos;d love to connect.
+           I'm eager to find my next challenge and learning opportunity in building high-impact solutions with a team.
+Creating something awesome? Or looking for someone who can help you build it? 
+Let's start a conversation.
           </p>
         </motion.div>
 
@@ -54,7 +59,7 @@ export function WorkTogetherCTA() {
         >
           <div className="bg-surface/40 border border-border/60 rounded-2xl p-8 md:p-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
             <h3 className="text-base font-semibold text-foreground/70 text-center mb-8 tracking-wide uppercase">
-              What I&apos;m available for:
+               I&apos;m Open To:
             </h3>
 
             <div className="grid md:grid-cols-2 gap-x-12 gap-y-5 max-w-xl mx-auto">
@@ -83,7 +88,7 @@ export function WorkTogetherCTA() {
             href="/contact"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "bg-primary text-primary-foreground hover:bg-primary/90 group px-8 rounded-full"
+              "bg-primary text-primary-foreground hover:bg-primary/90 group px-10 py-4 rounded-full"
             )}
           >
             <CalendarDays className="w-4 h-4 mr-2" />
@@ -93,7 +98,7 @@ export function WorkTogetherCTA() {
             href={`tel:+254700000000`}
             className={cn(
               buttonVariants({ variant: "outline", size: "lg" }),
-              "rounded-full px-8 border-border"
+              "rounded-full px-10 py-4 border-border"
             )}
           >
             <Phone className="w-4 h-4 mr-2" />

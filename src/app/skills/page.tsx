@@ -56,7 +56,7 @@ const CATEGORY_ICONS: Record<string, typeof Code2> = {
 
 export default function SkillsPage() {
   return (
-    <div className="pt-32 pb-24 min-h-screen">
+    <div className="pb-24 min-h-screen">
       <div className="max-w-6xl mx-auto px-6">
 
         <motion.div

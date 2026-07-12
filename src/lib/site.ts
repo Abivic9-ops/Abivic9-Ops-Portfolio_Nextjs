@@ -3,8 +3,13 @@ export const SITE = {
   role: "Senior Full-Stack Engineer",
   availability: "Open to talk and work anytime",
   positioning:"What if your vision become your niches invaluable tool?",
-  email: "vmwendwa486@gmail.com",
-  linkedin: "https://linkedin.com/in/your-handle",
+  email: "vmwendwa704@gmail.com",
+  linkedin: "www.linkedin.com/in/victor-mwendwa-4925343a9",
+  github: "https://github.com/Abivic9-ops",
+  tiktok: "https://tiktok.com/@your-handle",
+  instagram: "https://instagram.com/your-handle",
+  x: "https://x.com/your-handle",
+  medium: "https://medium.com/@your-handle",
   calendly: "https://calendly.com/your-handle",
   url: "https://your-domain.com",
 };
@@ -12,13 +17,12 @@ export const SITE = {
 export type NavLink = {
   label: string;
   href: string;
-  section?: string;
 };
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Home", href: "/", section: "home" },
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/", section: "services" },
+  { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
   { label: "Skills", href: "/skills" },
   { label: "Contact", href: "/contact" },

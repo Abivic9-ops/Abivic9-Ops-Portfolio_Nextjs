@@ -26,7 +26,7 @@ const STATS = [
 
 const FLOATING_BADGES = [
   { icon: ShieldCheck, label: "Proven Credibility", x: "30%", y: "2%", delay: 0 },
-  { icon: CheckCircle, label: "Impactful Results", x: "-25%", y: "90%", delay: 1.5 },
+  { icon: CheckCircle, label: "Impactful Results", x: "-65%", y: "85%", delay: 1.5 },
 ];
 
 export function Hero() {
@@ -40,7 +40,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-12">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-12 pb-12 md:pb-20">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-20%] left-0 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_left,_rgba(34,211,117,0.12),_transparent_60%)]" />
@@ -97,7 +97,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="text-lg text-muted-foreground leading-relaxed max-w-xl"
              >
-             Who Designs,crafts, builds and maintains end-to-end grade software application built on trust,stunning designs and relentless performance.Every decision serves the sole purpose of solving challenges and delivering wins and value to the community.
+             Who Designs, crafts, builds and maintains end to end grade software application built on trust, stunning designs and relentless performance. Every decision serves the sole purpose of solving challenges and delivering wins and value to the community.
             </motion.p>
 
             {/* Stats */}
@@ -124,7 +124,7 @@ export function Hero() {
             >
               <Link
                 href="/projects"
-                className={cn(buttonVariants({ size: "lg" }), "bg-primary text-primary-foreground hover:bg-primary/90 group px-8 rounded-full")}
+                className={cn(buttonVariants({ size: "lg" }), "bg-primary text-primary-foreground hover:bg-primary/90 group px-10 py-4 rounded-full")}
               >
                 View Projects
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -133,14 +133,14 @@ export function Hero() {
                 href="/cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(buttonVariants({ variant: "outline", size: "lg" }), "rounded-full px-8 border-border")}
+                className={cn(buttonVariants({ variant: "outline", size: "lg" }), "rounded-full px-10 py-4 border-border")}
               >
                 <Download className="mr-2 h-4 w-4" />
                 Download CV
               </a>
               <a
                 href={`mailto:${SITE.email}`}
-                className={cn(buttonVariants({ variant: "ghost", size: "lg" }), "rounded-full")}
+                className={cn(buttonVariants({ variant: "ghost", size: "lg" }), "rounded-full px-6 py-3")}
               >
                 <Mail className="mr-2 h-4 w-4" />
                 Email me
@@ -219,22 +219,20 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator - centered at bottom of hero */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      {/* Scroll indicator */}
+      <Link
+        href="#about"
+        className="hidden md:flex absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 z-10 flex-col items-center gap-2"
       >
-        <span className="text-xs text-muted-foreground">Scroll</span>
+        <span className="text-xs font-medium text-muted-foreground tracking-wide">Scroll Down</span>
         <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-5 h-8 rounded-full border border-border flex items-start justify-center p-1"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity }}
+          className="w-7 h-11 rounded-full border-2 border-primary/40 flex items-start justify-center p-1.5 bg-background/60 backdrop-blur-sm shadow-lg"
         >
-          <motion.div className="w-1.5 h-1.5 rounded-full bg-primary" />
+          <motion.div className="w-2 h-2 rounded-full bg-primary" />
         </motion.div>
-      </motion.div>
+      </Link>
     </section>
   );
 }

@@ -41,7 +41,7 @@ export default function RootLayout({
         >
           <ScrollProgress />
           <Navbar />
-          <main className="flex-1 flex flex-col min-h-screen pt-24 pb-12">
+          <main className="flex-1 flex flex-col min-h-screen pb-12">
             {children}
           </main>
           <Footer />

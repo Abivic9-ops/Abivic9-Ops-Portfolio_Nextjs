@@ -11,8 +11,10 @@ import {
   Phone,
   MapPin,
   ArrowRight,
+  Send,
   Loader2,
   Clock,
+  MessageCircle,
 } from "lucide-react";
 
 import { SITE } from "@/lib/site";
@@ -39,7 +41,7 @@ const contactSchema = z.object({
 });
 
 const SERVICE_OPTIONS = [
-  "Full-stack web app build",
+  "Full stack web app build",
   "Product / MVP development",
   "Frontend & design systems",
   "Technical partnership / consulting",
@@ -90,8 +92,8 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen pt-8">
-      <section className="py-20 md:py-28">
+    <div className="min-h-screen">
+       <section className="py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
@@ -102,9 +104,13 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               className="flex flex-col gap-8"
             >
-              {/* Brand chip */}
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
-                VM
+              {/* Availability badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 w-fit">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                </span>
+                <span className="text-sm font-medium text-primary">Available 24/7 — Let&apos;s Build?</span>
               </div>
 
               {/* Headline */}
@@ -161,8 +167,8 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <div className="bg-primary rounded-3xl p-8 md:p-10 shadow-[0_8px_30px_rgba(34,211,117,0.12),inset_0_1px_0_rgba(255,255,255,0.08)]">
-                <h2 className="text-xl font-bold text-primary-foreground mb-8">
-                  Send a message
+                <h2 className="text-2xl font-bold text-primary-foreground mb-8">
+                  Drop Me a Message
                 </h2>
 
                 <Form {...form}>
@@ -290,7 +296,7 @@ export default function ContactPage() {
                       ) : (
                         <>
                           Send Message
-                          <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                          <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </>
                       )}
                     </Button>

@@ -3,26 +3,24 @@
 import { useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
 
-const GRADIENTS = [
-  "from-emerald-500/20 via-primary/5 to-transparent",
-  "from-blue-500/20 via-primary/5 to-transparent",
-  "from-violet-500/20 via-primary/5 to-transparent",
-  "from-amber-500/20 via-primary/5 to-transparent",
-  "from-rose-500/20 via-primary/5 to-transparent",
-  "from-cyan-500/20 via-primary/5 to-transparent",
-];
-
-const BORDER_COLORS = [
-  "border-emerald-500/30 group-hover:border-emerald-500/60",
-  "border-blue-500/30 group-hover:border-blue-500/60",
-  "border-violet-500/30 group-hover:border-violet-500/60",
-  "border-amber-500/30 group-hover:border-amber-500/60",
-  "border-rose-500/30 group-hover:border-rose-500/60",
-  "border-cyan-500/30 group-hover:border-cyan-500/60",
-];
+const GRADIENT_BG: Record<string, string> = {
+  "Web App": "from-emerald-500/20 via-primary/5 to-transparent",
+  Fintech: "from-blue-500/20 via-primary/5 to-transparent",
+  API: "from-violet-500/20 via-primary/5 to-transparent",
+  "UI-UX": "from-amber-500/20 via-primary/5 to-transparent",
+  Mobile: "from-rose-500/20 via-primary/5 to-transparent",
+};
+const BORDER: Record<string, string> = {
+  "Web App": "border-emerald-500/30 group-hover:border-emerald-500/60",
+  Fintech: "border-blue-500/30 group-hover:border-blue-500/60",
+  API: "border-violet-500/30 group-hover:border-violet-500/60",
+  "UI-UX": "border-amber-500/30 group-hover:border-amber-500/60",
+  Mobile: "border-rose-500/30 group-hover:border-rose-500/60",
+};
 
 export function ProjectsOverview() {
   const prefersReducedMotion = useReducedMotion();
@@ -31,7 +29,7 @@ export function ProjectsOverview() {
   const displayProjects = [...PROJECTS, ...PROJECTS, ...PROJECTS].slice(0, 9);
 
   return (
-    <section id="projects" ref={containerRef} className="py-24 md:py-32 overflow-hidden relative">
+    <section id="projects" ref={containerRef} className="py-16 md:py-20 overflow-hidden relative">
       <div className="max-w-6xl mx-auto px-6 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,20 +41,19 @@ export function ProjectsOverview() {
           </h2>
           <div className="h-1 w-12 bg-primary rounded-full mb-6" />
           <p className="text-muted-foreground max-w-2xl text-lg">
-            A selection of projects I&apos;ve built, from fintech integrations to full-stack SaaS platforms.
+            A selection of projects I&apos;ve built: from payment integrations to full stack platforms.
           </p>
         </motion.div>
       </div>
 
-      {/* Horizontal Scroll Carousel - Constant Motion */}
       <div className="relative">
         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
         {prefersReducedMotion ? (
           <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROJECTS.map((project, idx) => (
-              <ProjectCard key={project.slug} project={project} idx={idx} />
+            {PROJECTS.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
         ) : (
@@ -71,7 +68,7 @@ export function ProjectsOverview() {
                   key={`${project.slug}-${idx}`}
                   className="shrink-0 w-[300px] sm:w-[380px] md:w-[440px]"
                 >
-                  <ProjectCard project={project} idx={idx % 9} />
+                  <ProjectCard project={project} />
                 </div>
               ))}
             </motion.div>
@@ -79,7 +76,6 @@ export function ProjectsOverview() {
         )}
       </div>
 
-      {/* Bottom CTA */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +84,7 @@ export function ProjectsOverview() {
       >
         <Link
           href="/projects"
-          className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium"
+          className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium"
         >
           View All Projects
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -98,20 +94,32 @@ export function ProjectsOverview() {
   );
 }
 
-function ProjectCard({ project, idx }: { project: (typeof PROJECTS)[number]; idx: number }) {
-  const gradientIdx = idx % GRADIENTS.length;
+function ProjectCard({ project }: { project: (typeof PROJECTS)[number] }) {
+  const gradient = GRADIENT_BG[project.category] || "from-emerald-500/20";
+  const border = BORDER[project.category] || "border-emerald-500/30";
 
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className={`group block relative rounded-2xl overflow-hidden bg-surface border ${BORDER_COLORS[gradientIdx]} transition-all duration-500 hover:scale-[1.02] hover:shadow-xl`}
+      className={`group block relative rounded-2xl overflow-hidden bg-surface border ${border} transition-all duration-500 hover:scale-[1.02] hover:shadow-xl`}
     >
-      <div className={`absolute inset-0 bg-gradient-to-br ${GRADIENTS[gradientIdx]} opacity-60 group-hover:opacity-100 transition-opacity duration-500`} />
+      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-60 group-hover:opacity-100 transition-opacity duration-500`} />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
 
-      <div className="relative p-6 md:p-8 flex flex-col min-h-[280px]">
+      {/* Image */}
+      <div className="relative w-full aspect-video overflow-hidden">
+        <Image
+          src={project.coverImage}
+          alt={project.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-700"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+      </div>
+
+      <div className="relative p-6 md:p-8 flex flex-col min-h-[220px]">
         <div className="flex items-center justify-between mb-4">
-          <span className={`text-xs font-mono px-3 py-1 rounded-full bg-background/80 border ${BORDER_COLORS[gradientIdx]} text-foreground`}>
+          <span className={`text-xs font-mono px-3 py-1 rounded-full bg-background/80 border ${border} text-foreground`}>
             {project.category}
           </span>
           <span className="text-sm text-muted-foreground">{project.year}</span>

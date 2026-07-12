@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Code2, Braces, Paintbrush, Sparkles, Server, Database, GitBranch, Zap, GitCommit, Container, Cloud, Globe, Wallet, Phone, CreditCard, Brain } from "lucide-react";
+import { ArrowRight, ExternalLink, Code2, Braces, Paintbrush, Sparkles, Server, Database, GitBranch, Zap, GitCommit, Container, Cloud, Globe, Wallet, Phone, CreditCard, Brain } from "lucide-react";
 import { SKILL_CATEGORIES } from "@/lib/skills";
 
 const ICON_MAP: Record<string, typeof Code2> = {
@@ -94,7 +94,7 @@ function SkillPill({ skill }: { skill: (typeof allSkills)[number] }) {
 
 export function SkillsPreview() {
   return (
-    <section id="skills" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="skills" className="py-16 md:py-20 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -138,9 +138,6 @@ export function SkillsPreview() {
               <div>
                 <h3 className="font-semibold text-foreground">{category.name}</h3>
               </div>
-              <span className="ml-auto text-xs font-mono text-muted-foreground bg-background border border-border rounded-full px-2.5 py-0.5">
-                {category.skills.length} skills
-              </span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
               {category.description}
