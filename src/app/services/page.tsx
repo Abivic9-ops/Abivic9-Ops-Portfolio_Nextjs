@@ -233,7 +233,7 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen">
       {/* ─── Hero ─── */}
-      <section className="relative py-12 md:py-16 overflow-hidden">
+      <section className="relative pt-2 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]" />
           <div className="absolute top-0 left-1/4 w-[600px] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.08),_transparent_60%)]" />

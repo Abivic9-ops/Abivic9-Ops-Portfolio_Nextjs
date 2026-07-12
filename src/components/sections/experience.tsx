@@ -55,7 +55,7 @@ const itemAnim = {
 
 export function Experience() {
   return (
-    <section id="experience" className="py-16 md:py-20 bg-surface/30 border-y border-border relative overflow-hidden">
+    <section id="experience" className="py-20 md:py-28 bg-surface/30 border-y border-border relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.04),_transparent_60%)]" />
       </div>
@@ -78,7 +78,7 @@ export function Experience() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
         >
           {EXPERIENCES.map((exp) => (
             <motion.div

@@ -35,7 +35,7 @@ const ABOUT_SUBSECTIONS = [
 
 export function About() {
   return (
-    <section className="py-20 md:py-24 relative overflow-hidden">
+    <section className="py-24 md:py-32 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_left,_rgba(34,211,117,0.08),_transparent_60%)]" />
@@ -49,11 +49,11 @@ export function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
           <SectionTitle className="mb-6">About Me</SectionTitle>
-          <div className="h-1 w-12 bg-primary rounded-full mb-6" />
-          <p className="text-muted-foreground max-w-2xl text-lg">
+          <div className="h-1 w-12 bg-primary rounded-full mb-6 mx-auto" />
+          <p className="text-muted-foreground max-w-2xl text-lg mx-auto">
             Get to know the person behind the code and the passion that drives my work.
           </p>
         </motion.div>
@@ -163,7 +163,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.4, delay: 0.3 }}
-              className="mt-8 text-right"
+              className="mt-8 text-center lg:text-right"
             >
               <Link
                 href="/about"

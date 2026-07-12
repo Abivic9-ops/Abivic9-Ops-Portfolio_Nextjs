@@ -176,7 +176,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* ─── 1. Hero / Positioning ─── */}
-      <section className="relative py-12 md:py-16 overflow-hidden">
+      <section className="relative pt-2 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]" />
           <div className="absolute top-1/4 left-0 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_left,_rgba(34,211,117,0.1),_transparent_60%)]" />
@@ -190,21 +190,21 @@ export default function AboutPage() {
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
           >
             {/* Text */}
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 w-fit mb-6">
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 w-fit mx-auto lg:mx-0 mb-6">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <span className="text-sm font-medium text-primary">Full-Stack Engineer</span>
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground leading-[1.15] mb-6">
                 What if your vision became your niche&apos;s most invaluable tool?
               </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl">
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
                 I&apos;m <span className="text-foreground font-semibold">{SITE.name}</span> — a full stack engineer based in Kenya who builds SaaS platforms,
                 fintech solutions, and AI powered systems that deliver real, measurable outcomes.
                 I don&apos;t just write code. I solve problems, eliminate bottlenecks, and build systems
                 that grow with your business.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
                 <Link href="/projects" className={cn(buttonVariants({ size: "lg" }), "rounded-full bg-primary text-primary-foreground hover:bg-primary/90 group px-10 py-4")}>
                   View My Work <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
@@ -220,7 +220,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative flex items-center justify-center"
             >
-              <div className="relative w-full max-w-[380px] aspect-square">
+              <div className="relative w-full max-w-[380px] aspect-square mx-auto">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.2),_transparent_60%)] animate-pulse" />
                 <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-gradient-to-br from-surface via-background to-surface border border-border shadow-2xl">
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:20px_20px]" />
@@ -240,14 +240,14 @@ export default function AboutPage() {
 
       {/* ─── 2. Who I Am ─── */}
       <section className="py-16 md:py-20 border-t border-border/50">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
           >
             <SectionTitle className="mb-8">Who I Am</SectionTitle>
-            <div className="space-y-5 text-muted-foreground leading-relaxed max-w-3xl">
+            <div className="space-y-5 text-muted-foreground leading-relaxed max-w-3xl mx-auto text-left">
               <p className="text-lg">
                 I&apos;m a full stack engineer based in Kenya who specializes in building grade software-SaaS platforms, fintech integrations and modern AI-powered solutions that deliver measurable outcomes to businesses.
               </p>

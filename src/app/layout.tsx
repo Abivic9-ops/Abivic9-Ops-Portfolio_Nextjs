@@ -19,9 +19,21 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Victor Mwendwa | Portfolio",
-  description: "Victor Mwendwa | Full-Stack Engineer",
+  title: {
+    default: "Victor Mwendwa | Full-Stack Engineer",
+    template: "%s | Victor Mwendwa",
+  },
+  description:
+    "Portfolio of Victor Mwendwa, a full-stack engineer building modern web products with React, Next.js, TypeScript, and scalable systems.",
+  metadataBase: new URL("https://victormwendwa-portfolio-2-0-portfolio.vercel.app"),
   icons: [{ rel: "icon", url: "/logo.png", type: "image/png" }],
+  openGraph: {
+    title: "Victor Mwendwa | Full-Stack Engineer",
+    description:
+      "Portfolio of Victor Mwendwa, a full-stack engineer building modern web products with React, Next.js, TypeScript, and scalable systems.",
+    url: "https://victormwendwa-portfolio-2-0-portfolio.vercel.app",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

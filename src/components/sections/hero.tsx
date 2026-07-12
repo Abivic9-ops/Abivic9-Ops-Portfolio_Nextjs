@@ -40,7 +40,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-12 pb-12 md:pb-20">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-4 pb-24 md:pb-32">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-20%] left-0 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_left,_rgba(34,211,117,0.12),_transparent_60%)]" />
@@ -52,7 +52,7 @@ export function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column - Content */}
-          <div className="lg:col-span-7 flex flex-col gap-8">
+          <div className="lg:col-span-7 flex flex-col gap-8 text-center lg:text-left items-center lg:items-start">
             {/* Greeting */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -120,7 +120,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="flex flex-col sm:flex-row items-start gap-4"
+              className="flex flex-col sm:flex-row items-center gap-4"
             >
               <Link
                 href="/projects"
@@ -145,6 +145,28 @@ export function Hero() {
                 <Mail className="mr-2 h-4 w-4" />
                 Email me
               </a>
+            </motion.div>
+
+            {/* Badges — column below CTAs on mobile, inline on desktop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="flex flex-col sm:flex-row items-center gap-3 mt-2"
+            >
+              {FLOATING_BADGES.map((badge) => (
+                <motion.div
+                  key={badge.label}
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: badge.delay }}
+                  className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-background/80 border border-border/60 shadow-md backdrop-blur-md"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <badge.icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <span className="text-[13px] font-medium text-foreground whitespace-nowrap tracking-tight">{badge.label}</span>
+                </motion.div>
+              ))}
             </motion.div>
 
           </div>
@@ -182,36 +204,7 @@ export function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
 
-              {/* Floating badges — diagonal: top-right, bottom-left */}
-              {FLOATING_BADGES.map((badge) => (
-                <motion.div
-                  key={badge.label}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    y: [0, -4, 0],
-                  }}
-                  transition={{
-                    opacity: { duration: 0.5, delay: 0.6 + badge.delay },
-                    scale: { duration: 0.5, delay: 0.6 + badge.delay },
-                    y: {
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: badge.delay,
-                    },
-                  }}
-                  whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(34,211,117,0.15)" }}
-                  className="absolute hidden md:flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-background/80 border border-border/60 shadow-md backdrop-blur-md cursor-default"
-                  style={{ top: badge.y, left: `calc(50% + ${badge.x})` }}
-                >
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <badge.icon className="w-4 h-4 text-primary" />
-                  </div>
-                  <span className="text-[13px] font-medium text-foreground whitespace-nowrap tracking-tight">{badge.label}</span>
-                </motion.div>
-              ))}
+              {/* Floating badges removed — now rendered below CTAs */}
 
             </motion.div>
           </div>

@@ -95,7 +95,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen">
-       <section className="py-16 md:py-20">
+       <section className="pt-2 pb-16 md:pb-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
@@ -104,7 +104,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col gap-8"
+              className="flex flex-col gap-8 text-center lg:text-left items-center lg:items-start"
             >
               {/* Availability badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 w-fit">

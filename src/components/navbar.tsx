@@ -14,8 +14,14 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/co
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   const { scrollY } = useScroll();
   const pathname = usePathname();
+
+  React.useEffect(() => {
+    setMobileOpen(false);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
@@ -23,8 +29,8 @@ export function Navbar() {
 
   return (
     <>
-      {/* Spacer: positions content exactly 20px below the navbar */}
-      <div className={isScrolled ? "h-[76px]" : "h-[96px]"} />
+      {/* Spacer: ensures content always clears the navbar */}
+      <div className="h-[104px] md:h-[84px]" />
       <motion.header
         layout
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
@@ -92,12 +98,12 @@ export function Navbar() {
               </a>
 
               {/* Mobile Menu */}
-              <Sheet>
+              <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
                 <SheetTrigger className="md:hidden inline-flex items-center justify-center rounded-lg h-8 w-8 hover:bg-muted transition-colors">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Open menu</span>
                 </SheetTrigger>
-                <SheetContent side="top" className="rounded-b-2xl border-b border-border bg-background p-6 pt-14">
+                <SheetContent side="top" className="rounded-b-2xl border-b border-border bg-background p-6 pt-14" showCloseButton={false}>
                   <SheetHeader className="sr-only">
                     <SheetTitle>Navigation</SheetTitle>
                   </SheetHeader>

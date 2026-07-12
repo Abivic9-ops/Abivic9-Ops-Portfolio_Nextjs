@@ -57,12 +57,12 @@ const CATEGORY_ICONS: Record<string, typeof Code2> = {
 export default function SkillsPage() {
   return (
     <div className="pb-24 min-h-screen">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6 pt-2">
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
           <Link
             href="/"
@@ -73,7 +73,7 @@ export default function SkillsPage() {
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
             Technical Arsenal
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             A comprehensive breakdown of my skills, tools, and proficiencies.
           </p>
         </motion.div>
