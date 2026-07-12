@@ -46,7 +46,7 @@ export function StatCounter({ end, suffix = "", duration = 2000, label }: StatCo
 
   return (
     <div ref={ref} className="flex flex-col gap-1">
-      <div className="text-4xl font-bold tracking-tight text-foreground flex items-baseline">
+      <div className="text-3xl md:text-4xl font-bold tracking-tight text-foreground flex items-baseline">
         {count}
         <span className="text-primary ml-0.5">{suffix}</span>
       </div>

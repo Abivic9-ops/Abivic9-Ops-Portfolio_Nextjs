@@ -12,6 +12,8 @@ export type Message = {
 const STORAGE_KEY = "vm-chat-messages";
 const STORAGE_OPEN_KEY = "vm-chat-open";
 const MAX_TURNS = 10;
+const MAX_RETRIES = 3;
+const RETRY_BASE_DELAY = 2000;
 
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -77,53 +79,75 @@ export function useChat() {
       const recent = currentMessages.slice(-MAX_TURNS * 2);
 
       try {
-        const res = await fetch("/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            messages: [...recent, userMsg].map((m) => ({
-              role: m.role,
-              content: m.content,
-            })),
-          }),
-        });
+        let lastError: string | null = null;
 
-        if (!res.ok) {
-          const body = await res.json().catch(() => ({}));
-          if (res.status === 429) setError("rate_limited");
-          else setError(body.error || "unknown");
-          setIsStreaming(false);
-          return;
+        for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+          if (attempt > 0) {
+            const delay = RETRY_BASE_DELAY * Math.pow(2, attempt - 1);
+            await new Promise((r) => setTimeout(r, delay));
+          }
+
+          const res = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              messages: [...recent, userMsg].map((m) => ({
+                role: m.role,
+                content: m.content,
+              })),
+            }),
+          });
+
+          if (res.status === 429) {
+            lastError = "rate_limited";
+            continue;
+          }
+
+          if (!res.ok) {
+            const body = await res.json().catch(() => ({}));
+            lastError = body.message || body.error || "Something went wrong.";
+            break;
+          }
+
+          const reader = res.body?.getReader();
+          if (!reader) throw new Error("no response body");
+
+          const assistantId = crypto.randomUUID();
+          setMessages((prev) => [
+            ...prev,
+            { id: assistantId, role: "assistant", content: "", timestamp: Date.now() },
+          ]);
+
+          const decoder = new TextDecoder();
+          let buffer = "";
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const stableBuffer = buffer;
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.id === assistantId ? { ...m, content: stableBuffer } : m
+              )
+            );
+          }
+
+          lastError = null;
+          break;
         }
 
-        const reader = res.body?.getReader();
-        if (!reader) throw new Error("no response body");
-
-        const assistantId = crypto.randomUUID();
-        setMessages((prev) => [
-          ...prev,
-          { id: assistantId, role: "assistant", content: "", timestamp: Date.now() },
-        ]);
-
-        const decoder = new TextDecoder();
-        let buffer = "";
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          buffer += decoder.decode(value, { stream: true });
-          const stableBuffer = buffer;
-          setMessages((prev) =>
-            prev.map((m) =>
-              m.id === assistantId ? { ...m, content: stableBuffer } : m
-            )
-          );
+        if (lastError) {
+          setError(lastError === "rate_limited"
+            ? "Still too many requests. Give it a minute and try again."
+            : lastError);
         }
       } catch (err: unknown) {
         if (err instanceof Error && err.name !== "AbortError") {
           setError("network");
         }
+
       } finally {
         setIsStreaming(false);
       }

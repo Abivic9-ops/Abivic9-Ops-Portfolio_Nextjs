@@ -1,8 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useChat } from "@/hooks/use-chat";
-import { ChatLauncher } from "./chat-launcher";
 import { ChatPanel } from "./chat-panel";
 
 export function ChatWidget() {
@@ -20,26 +20,28 @@ export function ChatWidget() {
     retry,
   } = useChat();
 
-  return (
-    <>
-      <AnimatePresence>
-        {isOpen && (
-          <ChatPanel
-            messages={messages}
-            input={input}
-            setInput={setInput}
-            onSend={send}
-            onRetry={retry}
-            onReset={reset}
-            onClose={close}
-            onOpen={() => {}}
-            isStreaming={isStreaming}
-            error={error}
-          />
-        )}
-      </AnimatePresence>
+  useEffect(() => {
+    const handler = () => toggleOpen();
+    window.addEventListener("toggle-chat", handler);
+    return () => window.removeEventListener("toggle-chat", handler);
+  }, [toggleOpen]);
 
-      <ChatLauncher isOpen={isOpen} onClick={toggleOpen} />
-    </>
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <ChatPanel
+          messages={messages}
+          input={input}
+          setInput={setInput}
+          onSend={send}
+          onRetry={retry}
+          onReset={reset}
+          onClose={close}
+          onOpen={() => {}}
+          isStreaming={isStreaming}
+          error={error}
+        />
+      )}
+    </AnimatePresence>
   );
 }

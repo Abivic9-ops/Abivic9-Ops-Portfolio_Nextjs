@@ -97,7 +97,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="text-lg text-muted-foreground leading-relaxed max-w-xl"
              >
-             Who Designs, crafts, builds and maintains end to end grade software application built on trust, stunning designs and relentless performance. Every decision serves the sole purpose of solving challenges and delivering wins and value to the community.
+             Who Designs, crafts, builds and maintains end to end grade software application built on trust, stunning designs and relentless performance. Every decision serves the sole purpose of solving challenges and delivering wins and value to my community.
             </motion.p>
 
             {/* Stats */}
@@ -203,7 +203,7 @@ export function Hero() {
                     },
                   }}
                   whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(34,211,117,0.15)" }}
-                  className="absolute flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-background/80 border border-border/60 shadow-md backdrop-blur-md cursor-default"
+                  className="absolute hidden md:flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-background/80 border border-border/60 shadow-md backdrop-blur-md cursor-default"
                   style={{ top: badge.y, left: `calc(50% + ${badge.x})` }}
                 >
                   <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -222,7 +222,7 @@ export function Hero() {
       {/* Scroll indicator */}
       <Link
         href="#about"
-        className="hidden md:flex absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 z-10 flex-col items-center gap-2"
+        className="md:flex absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-3 z-20 flex-col items-center gap-2"
       >
         <span className="text-xs font-medium text-muted-foreground tracking-wide">Scroll Down</span>
         <motion.div

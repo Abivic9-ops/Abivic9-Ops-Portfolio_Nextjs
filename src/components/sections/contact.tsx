@@ -64,7 +64,7 @@ export function Contact() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-surface/30 border-y border-border">
+    <section id="contact" className="py-16 md:py-24 bg-surface/30 border-y border-border">
       <div className="max-w-6xl mx-auto px-6">
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">

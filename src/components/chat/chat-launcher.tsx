@@ -18,7 +18,7 @@ export function ChatLauncher({ isOpen, onClick }: ChatLauncherProps) {
         aria-label={isOpen ? "Close chat" : "Open chat"}
         aria-expanded={isOpen}
         className={cn(
-          "relative flex h-14 w-14 items-center justify-center rounded-full shadow-xl transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          "relative flex h-12 items-center gap-2.5 rounded-full pl-4 pr-5 shadow-xl transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           "bg-primary text-primary-foreground hover:bg-primary/90"
         )}
         whileHover={{ scale: 1.06 }}
@@ -44,8 +44,11 @@ export function ChatLauncher({ isOpen, onClick }: ChatLauncherProps) {
           aria-hidden="true"
         />
 
-        <span className="relative flex items-center justify-center">
-          {isOpen ? <X className="h-5 w-5" /> : <BotAvatar size={32} />}
+        <span className="relative flex items-center justify-center shrink-0">
+          {isOpen ? <X className="h-5 w-5" /> : <BotAvatar size={24} />}
+        </span>
+        <span className="relative text-sm font-medium leading-none whitespace-nowrap">
+          {isOpen ? "Close" : "Ask AI"}
         </span>
       </motion.button>
     </div>

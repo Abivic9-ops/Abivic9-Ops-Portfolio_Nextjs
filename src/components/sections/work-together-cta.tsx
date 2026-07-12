@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { CheckCircle2, CalendarDays, Phone, MessageCircle, ArrowRight } from "lucide-react";
+import { CheckCircle2, CalendarDays, Phone, Mail, ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SITE } from "@/lib/site";
@@ -107,7 +107,7 @@ Let's start a conversation.
         </motion.div>
       </div>
 
-      {/* Floating chat FAB */}
+      {/* Floating email FAB */}
       <motion.a
         href={`mailto:${SITE.email}`}
         initial={{ opacity: 0, scale: 0.8 }}
@@ -115,9 +115,9 @@ Let's start a conversation.
         viewport={{ once: true }}
         transition={{ duration: 0.4, delay: 0.6 }}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary shadow-lg shadow-primary/25 flex items-center justify-center text-primary-foreground transition-all duration-200 ease-out hover:bg-primary/90 hover:-translate-y-0.5 motion-reduce:transform-none"
-        aria-label="Open chat"
+        aria-label="Send email"
       >
-        <MessageCircle className="w-6 h-6" />
+        <Mail className="w-6 h-6" />
       </motion.a>
     </section>
   );

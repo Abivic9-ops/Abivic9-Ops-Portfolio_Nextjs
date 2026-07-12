@@ -83,13 +83,14 @@ export function About() {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent border-2 border-primary/30 flex items-center justify-center overflow-hidden">
                       <Image
-                        src="/logo.png"
+                        src="/portfolio.jpg"
                         alt={SITE.name}
-                        width={192}
-                        height={192}
+                        width={250}
+                        height={250}
                         className="object-cover w-full h-full"
                       />
                     </div>
+                    
                   </div>
 
                   {/* Decorative corner blurs */}

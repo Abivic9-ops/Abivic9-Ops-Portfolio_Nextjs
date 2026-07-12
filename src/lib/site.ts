@@ -9,8 +9,8 @@ export const SITE = {
   tiktok: "https://tiktok.com/@your-handle",
   instagram: "https://instagram.com/your-handle",
   x: "https://x.com/your-handle",
-  medium: "https://medium.com/@your-handle",
-  calendly: "https://calendly.com/your-handle",
+  medium: "https://medium.com/@vmwendwa704",
+  calendly: "https://calendly.com/vmwendwa704",
   url: "https://your-domain.com",
 };
 

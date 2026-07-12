@@ -1,16 +1,14 @@
 import { NextRequest } from "next/server";
 
-const SYSTEM_PROMPT = `You are "Ask Victor", the friendly assistant on Victor Mwendwa's portfolio. Victor is a self-taught full-stack developer & designer in Nairobi, Kenya (4+ years), who ships fast, reliable products for Kenya, Africa & the world with React/Next.js, TypeScript, Postgres/Supabase, Prisma, plus real M-PESA (Safaricom Daraja) and Africa's Talking integrations. He values clarity, speed, and software that respects people's time.
+const SYSTEM_PROMPT = `You are "Ask Victor", the friendly assistant on Victor Mwendwa's portfolio. Victor is a self-taught full-stack developer & designer in Nairobi, Kenya (1.5+ years), who ships fast, reliable products for Kenya, Africa & the world with React/Next.js, TypeScript, Postgres/Supabase, Prisma, plus real M-PESA (Safaricom Daraja) and Africa's Talking integrations. He values clarity, speed, and software that respects people's time.
 
 Help visitors understand his skills, services (full-stack apps, landing pages & UI, API/DB design, fast MVPs), and how to hire him.
 
 Know his projects: DHIBITI (subscription & cash-flow control for Africa), Connexa (student internship platform, 800+ users), Lumen UI (React component kit), Pesa Pulse (real-time FX/remittance dashboard), Tabibu (telemedicine booking), Shamba OS (farm-management API).
 
-For contact, point to hello@victormwendwa.dev, WhatsApp, or a 30-min call; he replies within a day or two.
+For contact, point to ${process.env.CONTACT_EMAIL || "victor@mwendwa.dev"}, ${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "+254706366041"}, or a 30-min call; he replies within a day or two.
 
-Keep replies short, warm, confident; currency is KES; if unsure, say so and point to his email. Politely decline off-topic requests.
-
-TODO: Inject Supabase product/store context into this system prompt for contextual product knowledge.`;
+Keep replies short, warm, confident; currency is KES; if unsure, say so and point to his email. Politely decline off-topic requests. Then go through the whole site, understand deeply his working values, all the projects done and what fuels him in details. For each of these, to the questions asked, answer in details and fully. Take time to think before answering.`;
 
 const RATE_LIMIT_MAX = 20;
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000;
@@ -44,7 +42,7 @@ export async function POST(req: NextRequest) {
 
   if (!allowed) {
     return Response.json(
-      { error: "rate_limited", message: "You've reached the hourly limit. Please try again later." },
+      { error: "rate_limited", message: "You've sent too many messages for now. Try again in a few minutes." },
       { status: 429, headers: { "X-RateLimit-Remaining": "0" } }
     );
   }
@@ -53,58 +51,69 @@ export async function POST(req: NextRequest) {
   try {
     body = await req.json();
   } catch {
-    return Response.json({ error: "bad_request", message: "Invalid JSON body." }, { status: 400 });
+    return Response.json({ error: "bad_request", message: "Couldn't read your message. Please try again." }, { status: 400 });
   }
 
   if (!body.messages || !Array.isArray(body.messages) || body.messages.length === 0) {
-    return Response.json({ error: "bad_request", message: "Messages array is required." }, { status: 400 });
+    return Response.json({ error: "bad_request", message: "Your message was empty. Type something and try again." }, { status: 400 });
   }
 
-  const provider = process.env.LLM_PROVIDER || "groq";
-  const apiKey = provider === "gemini" ? process.env.GEMINI_API_KEY : process.env.GROQ_API_KEY;
+  const apiKey = process.env.OPENROUTER_API_KEY;
 
   if (!apiKey) {
     return Response.json(
-      { error: "config_error", message: "AI service is not configured. Set GROQ_API_KEY (or GEMINI_API_KEY) in .env.local." },
+      { error: "config_error", message: "AI isn't set up yet. The site owner needs to add an API key." },
       { status: 500 }
     );
   }
 
-  let baseUrl: string;
-  let model: string;
-
-  if (provider === "gemini") {
-    baseUrl = "https://generativelanguage.googleapis.com/v1beta/openai";
-    model = process.env.LLM_MODEL || "gemini-2.0-flash";
-  } else {
-    baseUrl = "https://api.groq.com/openai/v1";
-    model = process.env.LLM_MODEL || "llama-3.3-70b-versatile";
-  }
+  const model = process.env.LLM_MODEL || "meta-llama/llama-3.3-70b-instruct:free";
+  const baseUrl = "https://openrouter.ai/api/v1";
 
   const fullMessages = [
     { role: "system", content: SYSTEM_PROMPT },
     ...body.messages.slice(-20),
   ];
 
-  const upstreamRes = await fetch(`${baseUrl}/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model,
-      messages: fullMessages,
-      stream: true,
-      temperature: 0.7,
-      max_tokens: 1024,
-    }),
-  });
+  let upstreamRes: Response;
+  try {
+    upstreamRes = await fetch(`${baseUrl}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+        "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+        "X-Title": "Victor Mwendwa Portfolio",
+      },
+      body: JSON.stringify({
+        model,
+        messages: fullMessages,
+        stream: true,
+        temperature: 0.7,
+        max_tokens: 1024,
+      }),
+    });
+  } catch (err) {
+    console.error("Failed to reach OpenRouter:", err);
+    return Response.json(
+      { error: "network_error", message: "Could not reach the AI service. Check your internet connection and try again." },
+      { status: 502 }
+    );
+  }
 
   if (!upstreamRes.ok) {
     const errText = await upstreamRes.text().catch(() => "");
+    console.error("OpenRouter error:", upstreamRes.status, errText);
+
+    let userMessage = "Something went wrong connecting to the AI service.";
+    if (upstreamRes.status === 401) userMessage = "The AI service rejected the API key. The site owner needs to update it.";
+    else if (upstreamRes.status === 402) userMessage = "The AI service ran out of credits. The site owner needs to top up.";
+    else if (upstreamRes.status === 403) userMessage = "This AI model isn't available right now. Please try again later.";
+    else if (upstreamRes.status === 429) userMessage = "Too many requests to the AI service. Wait a minute and try again.";
+    else if (upstreamRes.status === 404) userMessage = "The AI model couldn't be found. It may have been removed or renamed.";
+
     return Response.json(
-      { error: "upstream_error", message: `AI service returned ${upstreamRes.status}.` },
+      { error: "upstream_error", message: userMessage },
       { status: 502 }
     );
   }
@@ -114,7 +123,11 @@ export async function POST(req: NextRequest) {
 
   const stream = new ReadableStream({
     async start(controller) {
-      const reader = upstreamRes.body!.getReader();
+      const reader = upstreamRes.body?.getReader();
+      if (!reader) {
+        controller.error(new Error("No response stream from AI service"));
+        return;
+      }
       try {
         while (true) {
           const { done, value } = await reader.read();

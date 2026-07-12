@@ -7,8 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ScrollProgress } from "@/components/scroll-progress";
-import { ScrollToTop } from "@/components/scroll-to-top";
-import { WhatsAppFab } from "@/components/whatsapp-fab";
+import { FloatingActions } from "@/components/floating-actions";
 import { CommandPalette } from "@/components/command-palette";
 import { ChatWidget } from "@/components/chat/chat-widget";
 import { Toaster } from "@/components/ui/sonner";
@@ -45,8 +44,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <ScrollToTop />
-          <WhatsAppFab />
+          <FloatingActions />
           <ChatWidget />
           <CommandPalette />
           <Toaster />

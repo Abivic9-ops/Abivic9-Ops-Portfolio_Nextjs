@@ -45,11 +45,9 @@ export function ChatInput({
       {error && (
         <div className="flex items-center gap-2 px-1" role="alert">
           <span className="text-xs text-destructive">
-            {error === "rate_limited"
-              ? "You've hit the rate limit. Please wait a bit."
-              : error === "network"
-                ? "I'm a little busy, try again."
-                : "Something went wrong."}
+            {(error === "network" || error?.includes("internet") || error?.includes("reach"))
+              ? "Lost connection. Check your internet and try again."
+              : error || "Something went wrong. Try again."}
           </span>
           <button
             onClick={onRetry}

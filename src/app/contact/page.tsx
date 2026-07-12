@@ -8,7 +8,6 @@ import * as z from "zod";
 import { toast } from "sonner";
 import {
   Mail,
-  Phone,
   MapPin,
   ArrowRight,
   Send,
@@ -48,9 +47,12 @@ const SERVICE_OPTIONS = [
   "Something else",
 ];
 
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "254706366041";
+const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+
 const CONTACT_CHANNELS = [
   { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
-  { icon: Phone, label: "Phone", value: "+254 7XX XXX XXX", href: "tel:+254700000000" },
+  { icon: MessageCircle, label: "WhatsApp", value: whatsappNumber, href: whatsappUrl },
   { icon: MapPin, label: "Location", value: "Nairobi, Kenya · Available worldwide" },
   { icon: Clock, label: "Availability", value: "Open to contract & full-time roles" },
 ];
