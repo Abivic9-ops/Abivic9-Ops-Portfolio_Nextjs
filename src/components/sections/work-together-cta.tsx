@@ -95,7 +95,7 @@ Let&apos;s start a conversation.
             Get in Touch
           </Link>
           <a
-            href={`tel:+254700000000`}
+            href={`tel:+254706366041`}
             className={cn(
               buttonVariants({ variant: "outline", size: "lg" }),
               "rounded-full px-10 py-4 border-border"

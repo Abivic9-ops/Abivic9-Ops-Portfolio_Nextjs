@@ -109,7 +109,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`tel:+254700000000`} className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 inline-flex items-center gap-1.5 group">
+                <a href={`tel:+254706366041`} className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 inline-flex items-center gap-1.5 group">
                   <span className="w-1 h-1 rounded-full bg-primary/30 group-hover:bg-primary transition-colors" />
                   Call Me
                 </a>

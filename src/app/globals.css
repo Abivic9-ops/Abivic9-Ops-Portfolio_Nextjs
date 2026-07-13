@@ -80,10 +80,114 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
+    @apply bg-background;
     scroll-behavior: smooth;
   }
+  body {
+    @apply text-foreground;
+  }
+}
+
+/* ─── Aurora colour-shift animation ────────────────────────────── */
+/* Colors: emerald, rose, blue, amber, sky, pink — from services hover gradients */
+
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  animation: aurora-fade-in 2s ease-out 0.5s forwards;
+}
+
+.aurora-bg::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(ellipse 40% 45% at 15% 20%,  hsla(160, 84%, 39%, 0.5), transparent 65%),
+    radial-gradient(ellipse 35% 40% at 80% 15%,  hsla(217, 91%, 60%, 0.4), transparent 60%),
+    radial-gradient(ellipse 40% 35% at 85% 75%,  hsla(350, 89%, 60%, 0.35), transparent 60%),
+    radial-gradient(ellipse 35% 45% at 20% 80%,  hsla(38, 92%, 50%, 0.35), transparent 65%),
+    radial-gradient(ellipse 35% 40% at 55% 50%,  hsla(199, 89%, 48%, 0.3), transparent 60%),
+    radial-gradient(ellipse 30% 35% at 40% 10%,  hsla(330, 81%, 60%, 0.3), transparent 55%);
+  filter: blur(80px);
+  animation: aurora-drift 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.dark .aurora-bg {
+  opacity: 0;
+  animation: aurora-fade-in-dark 2s ease-out 0.5s forwards;
+}
+
+.dark .aurora-bg::before {
+  filter: blur(100px);
+  animation: aurora-drift 12s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 0.7; }
+}
+
+@keyframes aurora-fade-in-dark {
+  0%   { opacity: 0; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes aurora-drift {
+  0%   { transform: translate(0%, 0%) rotate(0deg) scale(1); }
+  25%  { transform: translate(12%, -10%) rotate(4deg) scale(1.06); }
+  50%  { transform: translate(-8%, 12%) rotate(-3deg) scale(0.96); }
+  75%  { transform: translate(10%, 6%) rotate(3deg) scale(1.04); }
+  100% { transform: translate(-5%, -8%) rotate(-2deg) scale(1); }
+}
+
+/* ─── Gradient text utility ────────────────────────────────────── */
+/* Same 6 service hover colors for text gradient */
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    hsl(160, 84%, 39%) 0%,
+    hsl(217, 91%, 60%) 25%,
+    hsl(350, 89%, 60%) 45%,
+    hsl(38, 92%, 50%) 65%,
+    hsl(199, 89%, 48%) 80%,
+    hsl(330, 81%, 60%) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-text-shift 8s ease-in-out infinite;
+  will-change: background-position;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(
+    135deg,
+    hsl(160, 84%, 50%) 0%,
+    hsl(217, 91%, 65%) 25%,
+    hsl(350, 89%, 65%) 45%,
+    hsl(38, 92%, 55%) 65%,
+    hsl(199, 89%, 55%) 80%,
+    hsl(330, 81%, 65%) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-text-shift 8s ease-in-out infinite;
+}
+
+@keyframes gradient-text-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

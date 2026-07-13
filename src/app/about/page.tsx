@@ -581,7 +581,7 @@ export default function AboutPage() {
               Let&apos;s talk about it and make it a reality.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
+              <a
                 href={`mailto:${SITE.email}`}
                 className={cn(
                   buttonVariants({ size: "lg" }),
@@ -590,7 +590,7 @@ export default function AboutPage() {
               >
                 Reach Out to Me
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+              </a>
               <a
                 href={SITE.calendly}
                 target="_blank"

@@ -51,6 +51,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ScrollProgress />
+          <div className="aurora-bg" aria-hidden="true" />
           <Navbar />
           <main className="flex-1 flex flex-col min-h-screen pb-12">
             {children}
