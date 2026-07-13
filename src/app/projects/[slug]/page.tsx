@@ -24,7 +24,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
 
   return (
     <div className="min-h-screen pb-24">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6 pt-4">
 
         {/* Back Link */}
         <Link

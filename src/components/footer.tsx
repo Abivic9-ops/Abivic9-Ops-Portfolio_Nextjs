@@ -120,7 +120,7 @@ export function Footer() {
           {/* ─── Column 4: Interested In + CTA ─── */}
           <div>
             <h3 className="text-xs font-semibold text-foreground/60 uppercase tracking-widest mb-5">
-              Interested In
+              I am Interested In
             </h3>
             <ul className="space-y-3 mb-8">
               {INTERESTS.map((item) => (

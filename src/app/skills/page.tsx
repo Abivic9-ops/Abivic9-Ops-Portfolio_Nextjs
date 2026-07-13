@@ -62,18 +62,18 @@ export default function SkillsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16 text-center"
+          className="mb-16 text-left"
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground bg-surface hover:bg-surface/80 border border-border hover:border-primary/30 rounded-full px-5 py-2.5 mb-6 transition-all duration-300"
           >
             <ArrowLeft className="w-4 h-4" /> Back to home
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
             Technical Arsenal
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl">
             A comprehensive breakdown of my skills, tools, and proficiencies.
           </p>
         </motion.div>

@@ -235,9 +235,9 @@ export default function ServicesPage() {
       {/* ─── Hero ─── */}
       <section className="relative pt-2 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]" />
-          <div className="absolute top-0 left-1/4 w-[600px] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.08),_transparent_60%)]" />
+          <div className="absolute top-0 left-0 w-[600px] h-[700px] bg-[radial-gradient(ellipse_at_top_left,_rgba(34,211,117,0.12),_transparent_60%)]" />
           <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.05),_transparent_60%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:19px_19px]" style={{ maskImage: "radial-gradient(ellipse 80% 70% at 50% 40%, black 40%, transparent 100%)", WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 40%, black 40%, transparent 100%)" }} />
         </div>
         <div className="max-w-5xl mx-auto px-6 relative z-10">
           <motion.div

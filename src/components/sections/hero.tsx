@@ -43,9 +43,9 @@ export function Hero() {
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-4 pb-24 md:pb-32">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-0 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_left,_rgba(34,211,117,0.12),_transparent_60%)]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.08),_transparent_60%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />
+        <div className="absolute top-0 left-0 w-[700px] h-[800px] bg-[radial-gradient(ellipse_at_top_left,_rgba(34,211,117,0.15),_transparent_60%)]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.06),_transparent_60%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:19px_19px]" />
       </div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10 w-full">

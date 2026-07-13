@@ -40,7 +40,7 @@ export function About() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_left,_rgba(34,211,117,0.08),_transparent_60%)]" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_rgba(34,211,117,0.05),_transparent_60%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:64px_64px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:38px_38px]" />
       </div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -49,11 +49,11 @@ export function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="mb-16 text-center"
+          className="mb-16 text-left"
         >
           <SectionTitle className="mb-6">About Me</SectionTitle>
-          <div className="h-1 w-12 bg-primary rounded-full mb-6 mx-auto" />
-          <p className="text-muted-foreground max-w-2xl text-lg mx-auto">
+          <div className="h-1 w-12 bg-primary rounded-full mb-6" />
+          <p className="text-muted-foreground max-w-2xl text-lg">
             Get to know the person behind the code and the passion that drives my work.
           </p>
         </motion.div>
@@ -169,7 +169,7 @@ export function About() {
                 href="/about"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-10 py-4 text-sm font-semibold shadow-lg inline-flex items-center gap-2"
+                  "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 py-2.5 text-sm font-semibold shadow-lg inline-flex items-center gap-2"
                 )}
               >
                 Learn More About Me
