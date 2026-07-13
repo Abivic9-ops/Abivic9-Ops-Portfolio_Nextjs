@@ -100,7 +100,7 @@ export function SkillsPreview() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6"
         >
           <div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
@@ -121,7 +121,7 @@ export function SkillsPreview() {
       </div>
 
       {/* Category Cards */}
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
         {SKILL_CATEGORIES.map((category, idx) => (
           <motion.div
             key={category.name}
@@ -162,12 +162,12 @@ export function SkillsPreview() {
       </div>
 
       {/* Horizontal Scrolling Marquee - Constant Motion */}
-      <div className="relative py-8 border-y border-border/50 bg-surface/20 overflow-hidden">
+      <div className="relative py-10 border-y border-border/50 bg-surface/20 overflow-hidden">
         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
         {/* Row 1 - scrolls left */}
-        <div className="flex overflow-hidden mb-4">
+        <div className="flex overflow-hidden mb-6">
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 40, ease: "linear", repeat: Infinity }}

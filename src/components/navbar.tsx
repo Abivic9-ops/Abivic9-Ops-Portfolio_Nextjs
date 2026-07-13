@@ -30,7 +30,7 @@ export function Navbar() {
   return (
     <>
       {/* Spacer: ensures content always clears the navbar */}
-      <div className="h-[104px] md:h-[84px]" />
+      <div className="h-[104px] lg:h-[84px]" />
       <motion.header
         layout
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
@@ -55,7 +55,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map((link) => {
               const isActive = link.href === "/"
                 ? pathname === "/"
@@ -92,14 +92,14 @@ export function Navbar() {
                 href={SITE.calendly}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(buttonVariants({ className: "hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90" }))}
+                className={cn(buttonVariants({ className: "hidden md:inline-flex lg:inline-flex bg-primary text-primary-foreground hover:bg-primary/90" }))}
               >
                 Book a call
               </a>
 
               {/* Mobile Menu */}
               <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                <SheetTrigger className="md:hidden inline-flex items-center justify-center rounded-lg h-8 w-8 hover:bg-muted transition-colors">
+                <SheetTrigger className="lg:hidden inline-flex items-center justify-center rounded-lg h-8 w-8 hover:bg-muted transition-colors">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Open menu</span>
                 </SheetTrigger>

@@ -71,12 +71,12 @@ export default async function ProjectCaseStudy({ params }: Props) {
             </div>
 
             {/* Meta / Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 bg-surface/30 border border-border/40 rounded-2xl">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-8 bg-surface/30 border border-border/40 rounded-2xl">
               <div>
                 <h3 className="text-xs font-semibold text-foreground/60 uppercase tracking-widest mb-2">Role</h3>
                 <p className="text-foreground font-semibold">{project.role}</p>
               </div>
-              <div className="md:col-span-2">
+              <div className="lg:col-span-2">
                 <h3 className="text-xs font-semibold text-foreground/60 uppercase tracking-widest mb-3">Key Outcomes</h3>
                 <div className="flex flex-wrap gap-x-6 gap-y-2">
                   {project.metrics.map((m, i) => (

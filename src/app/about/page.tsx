@@ -287,8 +287,8 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Horizontal timeline */}
-          <div className="hidden md:block">
-            <div className="grid grid-cols-4 gap-6">
+          <div className="hidden lg:block">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               {HOW_I_WORK.map((step, idx) => {
                 const Icon = step.icon;
                 return (
@@ -403,7 +403,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {CREDIBILITY_PROOFS.map((proof, idx) => (
               <motion.div
                 key={proof.label}
@@ -510,7 +510,7 @@ export default function AboutPage() {
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                 Every engagement starts with a clear scope agreement. I work in phases:from a focused 2-week sprint to a multi-quarter partnership. You always know what you&apos;re getting, when you&apos;re getting it, and what it costs.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {["Discovery & Audit", "Build & Launch", "Optimize & Scale"].map((phase) => (
                   <div key={phase} className="bg-primary/5 border border-primary/10 rounded-xl px-4 py-3 text-center text-sm font-medium text-primary">
                     {phase}

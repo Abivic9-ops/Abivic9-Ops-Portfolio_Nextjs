@@ -215,7 +215,7 @@ export function Hero() {
       {/* Scroll indicator */}
       <Link
         href="#about"
-        className="md:flex absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-3 z-20 flex-col items-center gap-2"
+        className="flex absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-3 z-20 flex-col items-center gap-2"
       >
         <span className="text-xs font-medium text-muted-foreground tracking-wide">Scroll Down</span>
         <motion.div
