@@ -147,7 +147,7 @@ export function WhatIBring() {
             href="/about"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-10 py-4 text-sm font-semibold shadow-lg inline-flex items-center gap-2 group"
+              "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-5 py-2.5 md:px-10 md:py-4 text-xs sm:text-sm font-semibold shadow-lg inline-flex items-center gap-2 group"
             )}
           >
             Learn More About My Full Approach
